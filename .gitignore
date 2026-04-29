@@ -1,0 +1,214 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# ============================================
+# Dependencies
+# ============================================
+node_modules/
+/.pnp
+.pnp.js
+.yarn/
+.yarn/install-state.gz
+.yarn/cache
+.pnp.*
+
+# ============================================
+# Next.js
+# ============================================
+/.next/
+/out/
+.next/
+out/
+
+# ============================================
+# Production / Build
+# ============================================
+/build
+/dist
+*.tsbuildinfo
+next-env.d.ts
+
+# ============================================
+# Environment Variables
+# ============================================
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Keep example files
+!.env*.example
+!env.local.example
+
+# ============================================
+# Testing
+# ============================================
+/coverage
+/.nyc_output
+*.lcov
+.jest/
+
+# ============================================
+# Logs
+# ============================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# ============================================
+# Supabase
+# ============================================
+supabase/.temp/
+supabase/.branches/
+supabase/.config.local.json
+supabase/.env.local
+
+# ============================================
+# IDE / Editor
+# ============================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ============================================
+# OS Files
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# Deployment
+# ============================================
+.vercel
+.vercel/
+.netlify
+.netlify/
+
+# ============================================
+# Misc
+# ============================================
+*.pem
+*.key
+*.cert
+*.crt
+.cache/
+.parcel-cache/
+.turbo/
+.swc/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+
+# ============================================
+# Database / Migrations (if you have local DB files)
+# ============================================
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# ============================================
+# Package Manager Locks (optional - uncomment if you want to ignore)
+# ============================================
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# ============================================
+# TypeScript
+# ============================================
+*.tsbuildinfo
+
+# ============================================
+# ESLint / Prettier
+# ============================================
+.eslintcache
+.prettierignore
+.prettiercache
+
+# ============================================
+# Storybook
+# ============================================
+storybook-static/
+
+# ============================================
+# Temporary files
+# ============================================
+*.tmp
+*.temp
+.tmp/
+.temp/

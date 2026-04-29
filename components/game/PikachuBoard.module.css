@@ -1,0 +1,274 @@
+/* =========================================
+   1. BỐ CỤC CHUNG BÀN GAME
+   ========================================= */
+.gameWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #111827;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 10px;
+  gap: 10px;
+  position: relative;
+}
+
+/* =========================================
+   2. CỘT TRÁI (SIDEBAR) & CÁC NÚT ĐIỀU KHIỂN
+   ========================================= */
+.leftSidebar {
+  width: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1f2937;
+  padding: 10px 5px;
+  border-radius: 8px;
+  border: 1px solid #374151;
+  z-index: 10;
+}
+
+.statBlock {
+  text-align: center;
+  width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid #374151;
+  overflow: hidden;
+}
+
+.statTitle {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.statValue {
+  color: white;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.bottomActions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid #374151;
+  padding-top: 10px;
+}
+
+/* --- THÊM VẠCH CHIA GIỮA CÁC ICON --- */
+.actionBtn:not(:last-child) {
+  border-bottom: 1px solid #374151; /* Vạch chia ngang cho cột */
+}
+
+.actionBtn {
+  width: 100%;
+  padding: 10px 0; /* Tăng padding để vạch chia rõ hơn */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.actionBtn:hover {
+  color: white;
+}
+
+.actionIcon {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.actionText {
+  font-size: 0.65rem;
+  font-weight: bold;
+}
+
+/* =========================================
+   3. NÚT "GAME KHÁC" (VIÊN THUỐC)
+   ========================================= */
+.mobileMenuBtnCapsule {
+  position: absolute;
+  left: 90px;
+  bottom: 20px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(3, 169, 244, 0.15);
+  border: 1px solid #03a9f4;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(3, 169, 244, 0.3);
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.mobileMenuBtnCapsule:active {
+  transform: scale(0.95);
+  background: rgba(3, 169, 244, 0.4);
+}
+
+.menuIcon {
+  font-size: 0.9rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.menuText {
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+@media (min-width: 1025px) {
+  .mobileMenuBtnCapsule {
+    display: none !important;
+  }
+}
+
+/* =========================================
+   4. CỘT PHẢI (THANH THỜI GIAN)
+   ========================================= */
+.rightSidebar {
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1f2937;
+  padding: 10px 5px;
+  border-radius: 8px;
+  border: 1px solid #374151;
+  z-index: 10;
+}
+
+.timeBarContainer {
+  flex: 1;
+  width: 10px;
+  background-color: #111827;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #374151;
+  display: flex;
+  align-items: flex-end;
+  padding: 1px;
+}
+
+/* --- ĐỔI MÀU THANH THỜI GIAN SANG CYAN --- */
+.timeBarFill {
+  width: 100%;
+  border-radius: 4px;
+  transition: height 1s linear;
+  background-color: #03a9f4; /* Màu xanh cyan sáng */
+  box-shadow: 0 0 10px rgba(3, 169, 244, 0.5); /* Hiệu ứng phát sáng */
+}
+
+/* =========================================
+   5. OVERLAY (THẮNG/THUA & CẢNH BÁO XOAY)
+   ========================================= */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(5px);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay h2 {
+  font-size: 3rem;
+  font-weight: 900;
+}
+.overlay p {
+  color: white;
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+.overlayBtn {
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.portraitOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 24, 39, 0.98);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #facc15;
+  text-align: center;
+  padding: 20px;
+}
+.portraitIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   6. RESPONSIVE MOBILE NGANG (ĐIỆN THOẠI LÙN)
+   ========================================= */
+@media (max-height: 500px) {
+  .leftSidebar {
+    padding: 4px 2px;
+  }
+  .statBlock {
+    padding: 2px 0;
+  }
+  .statTitle {
+    font-size: 0.6rem;
+  }
+  .statValue {
+    font-size: 1rem;
+  }
+  .bottomActions {
+    padding-top: 4px;
+    gap: 0;
+  } /* Xóa khoảng cách mặc định */
+
+  /* Đảm bảo vạch chia vẫn hoạt động trên Mobile */
+  .actionBtn:not(:last-child) {
+    border-bottom: 1px solid #374151;
+  }
+
+  .actionBtn {
+    padding: 6px 0;
+  } /* Tăng size icon trên mobile */
+  .actionIcon {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  } /* Giữ size to */
+  .actionText {
+    font-size: 0.6rem;
+  }
+}

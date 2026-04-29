@@ -1,0 +1,22 @@
+.appLayout {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  background-attachment: fixed;
+  transition: background-color 0.3s ease;
+}
+
+/* 🚀 SỬA TRỰC TIẾP TẠI ĐÂY: 
+   Biến thằng .content thành full viền luôn, 
+   cả website tự động bung lụa mà không cần sửa file TSX */
+.content {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cái này bác cứ để nguyên dự phòng cũng được, không ảnh hưởng gì */
+.fullWidthContent {
+  width: 100%;
+  padding: 0;
+}

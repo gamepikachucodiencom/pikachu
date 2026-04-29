@@ -1,0 +1,104 @@
+/* SurrenderButton - pill style, dark brown + golden border, cream text + flag icon */
+
+.surrenderButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 999px;
+  border: 2px solid var(--color-timer-border);
+  background: var(--color-timer-bg);
+  color: #e8e0d0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  transform: scale(0.75);
+  transform-origin: center;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.surrenderButton:hover:not(:disabled) {
+  background: rgba(60, 55, 50, 0.95);
+  border-color: var(--color-frame-gold);
+  color: var(--color-frame-gold);
+  box-shadow:
+    0 0 10px rgba(201, 168, 76, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.surrenderButton:active:not(:disabled) {
+  transform: scale(0.74);
+}
+
+.surrenderButtonDisabled,
+.surrenderButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.flagIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  flex-shrink: 0;
+}
+
+.surrenderButton:hover:not(:disabled) .flagIcon { color: rgba(255, 255, 255, 0.95); }
+
+.flagIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+/* Icon-only on small screens: same height as GameTimer (same padding + icon size, no extra min-height) */
+@media (max-width: 1024px) {
+  .label {
+    display: none;
+  }
+
+  .surrenderButton {
+    width: auto;
+    min-width: 44px; /* touch target; height comes from row stretch */
+    min-height: 0;
+    padding: var(--spacing-xs) var(--spacing-sm); /* same as GameTimer */
+    border-radius: var(--radius-md);
+    transform: scale(0.85); /* match GameTimer scale so row aligns */
+    transform-origin: center;
+    /* Height equals timer via parent align-items: stretch */
+  }
+
+  .surrenderButton:active:not(:disabled) {
+    transform: scale(0.82);
+  }
+
+  .flagIcon {
+    width: clamp(17px, 3.4vw, 24px); /* match GameTimer icon size */
+    height: clamp(17px, 3.4vw, 24px);
+    color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+@media (max-width: 480px) {
+  .surrenderButton {
+    font-size: 0.9rem;
+  }
+
+  .flagIcon {
+    width: clamp(15px, 3vw, 20px);
+    height: clamp(15px, 3vw, 20px);
+  }
+}

@@ -1,0 +1,58 @@
+/* app/(pages)/choi-co-tuong-online/Game.module.css */
+
+/* 1. Main Page Layout - Forces full viewport height minus header */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px); /* Adjust 64px to your Navbar height */
+  background-color: var(--color-bg-page);
+  overflow: hidden; /* Prevent body scroll during game */
+}
+
+/* 2. Game Area - Grows to fill available space */
+.gameArea {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: var(--spacing-sm);
+}
+
+/* 3. The Board Container - The critical "Parent" for Pixi.js */
+.boardContainer {
+  /* Pixi needs a reference for width/height */
+  width: 100%;
+  max-width: 600px; /* Max width for desktop readability */
+  aspect-ratio: 9 / 10; /* Semantic aspect ratio for Xiangqi */
+
+  position: relative;
+  background-color: var(--color-secondary); /* Fallback color */
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* CRITICAL for Mobile Game: Disables browser scrolling on the board */
+  touch-action: none;
+}
+
+/* 4. Canvas - Ensures Pixi fills the container */
+.canvas {
+  display: block; /* Removes default inline spacing */
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* 5. UI Overlay (e.g., Turn Indicator, Checkmate Alert) */
+/* Positioned OVER the canvas but using standard HTML */
+.uiOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none; /* Let clicks pass through to the game */
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: center;
+}

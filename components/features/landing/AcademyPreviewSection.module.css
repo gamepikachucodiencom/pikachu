@@ -1,0 +1,192 @@
+/* =========================================
+   ACADEMY PREVIEW (HỌC VIỆN KỲ THỦ)
+   ========================================= */
+
+.section {
+  padding: 60px 20px 80px;
+  background-color: transparent;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.titleBadge {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #b71c1c;
+  background: #ffeaeb;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #212121;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  font-family: 'Merriweather', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #757575;
+}
+
+/* GRID 3 CỘT */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* CARD KHÓA HỌC/CỜ THẾ */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.imageBox {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .thumbnail {
+  transform: scale(1.08);
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 6px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* NỘI DUNG THẺ */
+.contentBox {
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blogTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #212121;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  transition: color 0.2s ease;
+}
+
+.card:hover .blogTitle {
+  color: #b71c1c;
+}
+
+.excerpt {
+  font-size: 0.95rem;
+  color: #616161;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMoreBtn {
+  background: transparent;
+  border: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.readMoreBtn:hover {
+  transform: translateX(5px);
+}
+
+/* NÚT XEM TẤT CẢ Ở DƯỚI */
+.footer {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.viewAllBtn {
+  background: white;
+  color: #424242;
+  border: 2px solid #e0e0e0;
+  padding: 14px 40px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.viewAllBtn:hover {
+  background: #fafafa;
+  border-color: #b71c1c;
+  color: #b71c1c;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card:nth-child(3) {
+    display: flex;
+  }
+}

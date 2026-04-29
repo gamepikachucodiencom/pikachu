@@ -1,0 +1,128 @@
+/* app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap');
+
+:root {
+  /* --- BỘ MÀU CASUAL GAME (TƯƠI SÁNG & NGỌT NGÀO) --- */
+
+  /* 1. Màu Chính (Primary & Brand - Tông Cam/Vàng năng động) */
+  --color-primary: #ff9800; /* Cam rực - Dùng cho nút Chơi Ngay */
+  --color-secondary: #03a9f4; /* Xanh da trời sáng - Điểm nhấn phụ */
+
+  /* 2. Màu Nền (Backgrounds) */
+  --color-bg-page: #f0f8ff; /* Xanh Alice (Siêu nhạt) - Giúp mắt cực dịu */
+  --color-bg-surface: #ffffff; /* Trắng tinh - Nền của các thẻ (Card) */
+  --color-bg-input: #e1f5fe; /* Xanh nhạt - Nền ô nhập liệu */
+  --color-bg-gameboard: #2b3a42; /* Màu xanh than tĩnh lặng - Bo quanh game để làm nổi icon */
+
+  /* 4. Màu Chữ (Typography) */
+  --color-text-main: #333333; /* Xám đen - Dễ đọc nhưng không bị gắt như màu đen tuyền */
+  --color-text-muted: #757575; /* Xám Ghi - Chữ chú thích */
+  --color-text-inverse: #ffffff; /* Trắng - Dùng cho chữ nằm trên nút Cam/Xanh */
+  --color-text-brand: #ff6d00; /* Chữ nhấn mạnh */
+
+  /* --- HỆ THỐNG FONT & KHOẢNG CÁCH --- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 64px;
+
+  /* CHUYỂN SANG FONT TRÒN TRỊA, ĐÁNG YÊU */
+  --font-heading: 'Nunito', sans-serif;
+  --font-body: 'Quicksand', sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 16px; /* Bo góc to hơn cho mềm mại */
+  --radius-lg: 24px;
+  --radius-xl: 50px; /* Nút hình con nhộng */
+
+  /* Đổ bóng nhẹ nhàng kiểu kẹo ngọt */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 16px rgba(3, 169, 244, 0.1);
+  --shadow-gold: 0 4px 14px rgba(255, 152, 0, 0.4);
+}
+
+/* Cấu hình cơ bản */
+html {
+  min-height: 100vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-bg-page);
+
+  /* Tạo pattern nền chấm bi mờ siêu dễ thương (Thay cho vân giấy cũ) */
+  background-image: radial-gradient(circle, #cfd8dc 2px, transparent 2px);
+  background-size: 24px 24px;
+
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-main);
+  margin-top: 0;
+  font-weight: 800; /* Chữ tiêu đề béo mập */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Nút chính (Nút Cam) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: var(--radius-xl);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-primary:hover {
+  background-color: #f57c00;
+  transform: translateY(-3px) scale(1.05); /* Hiệu ứng nảy khi hover */
+}

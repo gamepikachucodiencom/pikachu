@@ -1,0 +1,49 @@
+/* ResponsiveGameContainer.module.css */
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  touch-action: none; /* Prevent scrolling on mobile when dragging pieces */
+  pointer-events: auto;
+  -webkit-touch-callout: none; /* Prevent iOS callout menu */
+  -webkit-user-select: none; /* Prevent text selection */
+  user-select: none;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile styles */
+.containerMobile {
+  width: 95vw;
+  max-width: 95vw;
+}
+
+/* Desktop styles */
+.containerDesktop {
+  height: 90vh;
+  max-height: 90vh;
+  max-width: 100%;
+}
+
+/* When used inside a sized parent (e.g. PlayWithAIPage .boardWrapper): fill and fit so full board is visible */
+.containerFillParent {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}

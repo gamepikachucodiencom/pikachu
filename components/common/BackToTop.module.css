@@ -1,0 +1,54 @@
+/* =========================================
+   BACK TO TOP BUTTON
+   ========================================= */
+
+.backToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(183, 28, 28, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Đảm bảo luôn nằm trên cùng mọi thứ */
+
+  /* Hiệu ứng ẩn/hiện */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backToTopBtn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.backToTopBtn:hover {
+  transform: translateY(-5px) scale(1.05); /* Hover vào thì nảy lên xíu */
+  box-shadow: 0 8px 25px rgba(183, 28, 28, 0.6);
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+}
+
+.arrow {
+  font-size: 1.2rem;
+  margin-top: -2px; /* Căn chỉnh nhẹ cho mũi tên nằm giữa */
+}
+
+/* RESPONSIVE CHO ĐIỆN THOẠI */
+@media (max-width: 768px) {
+  .backToTopBtn {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}

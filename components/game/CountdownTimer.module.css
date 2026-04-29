@@ -1,0 +1,67 @@
+/* CountdownTimer.module.css */
+
+.badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-family: monospace;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.badgeRed {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #991b1b;
+}
+
+.badgeDark {
+  background-color: rgba(55, 65, 81, 0.2);
+  color: #1f2937;
+}
+
+.badgeOrange {
+  background-color: rgba(251, 146, 60, 0.2);
+  color: #9a3412;
+}
+
+.badgeZero {
+  background-color: rgba(239, 68, 68, 0.3);
+  color: #991b1b;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.sizeSm {
+  font-size: 0.875rem;
+  min-width: 60px;
+}
+
+.sizeMd {
+  font-size: 1rem;
+  min-width: 70px;
+}
+
+.sizeLg {
+  font-size: 1.2rem;
+  min-width: 80px;
+}
+
+.variantFilled {
+  background-color: var(--color-danger);
+  color: white;
+}
+
+.variantFilled.badgeOrange {
+  background-color: #f97316;
+  color: white;
+}

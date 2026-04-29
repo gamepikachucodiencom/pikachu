@@ -1,0 +1,123 @@
+/* =========================================
+   FOOTER SECTION
+   ========================================= */
+
+.footer {
+  background-color: #1a1715; /* Màu xám than sậm pha chút nâu gỗ */
+  color: #d1d1d1;
+  padding: 80px 20px 20px;
+  border-top: 4px solid #b71c1c; /* Đường viền đỏ phân cách với nội dung web */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* KHU VỰC 4 CỘT TRÊN */
+.topSection {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr; /* Cột Logo to gấp đôi các cột Link */
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+/* CỘT THƯƠNG HIỆU */
+.logo {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #b71c1c;
+}
+
+.slogan {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  color: #9e9e9e;
+  padding-right: 20px;
+}
+
+/* CÁC CỘT LINK */
+.colTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Vạch gạch chân nhỏ dưới tiêu đề cột */
+.colTitle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  height: 2px;
+  background-color: #b71c1c;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linkList li {
+  margin-bottom: 15px;
+}
+
+.linkList a {
+  color: #9e9e9e;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.linkList a:hover {
+  color: #ef5350; /* Đỏ sáng hơn khi hover trên nền tối */
+  transform: translateX(5px); /* Trượt nhẹ sang phải */
+}
+
+/* KHU VỰC COPYRIGHT DƯỚI CÙNG */
+.bottomSection {
+  border-top: 1px solid #332f2c;
+  padding-top: 25px;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: #757575;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+  .topSection {
+    grid-template-columns: 1fr 1fr; /* Về 2 cột trên Tablet */
+  }
+  .brandCol {
+    grid-column: span 2; /* Logo chiếm 2 cột */
+  }
+}
+
+@media (max-width: 600px) {
+  .topSection {
+    grid-template-columns: 1fr; /* Về 1 cột trên Mobile */
+    gap: 30px;
+  }
+  .brandCol {
+    grid-column: span 1;
+  }
+  .slogan {
+    padding-right: 0;
+  }
+}

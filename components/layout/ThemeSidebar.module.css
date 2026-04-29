@@ -1,0 +1,59 @@
+.leftSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.themeCard {
+  display: block;
+  background: #1f2937; /* Nền thẻ tối */
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #374151;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+  text-decoration: none;
+}
+
+.themeCard:hover {
+  transform: translateY(-4px);
+  border-color: #3b82f6;
+}
+
+.themeThumbnail {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background-color: #111827;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.themeThumbnail img {
+  width: 100%;
+  height: 100%;
+  /* CHỐNG MÉO ẢNH: Lấp đầy khung mà vẫn giữ tỷ lệ */
+  object-fit: cover;
+}
+
+.themeTitleBar {
+  background: #374151;
+  color: #f3f4f6;
+  text-align: center;
+  padding: 10px 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* ----------------------------------
+   CHIA 2 CỘT TRONG POPUP MOBILE
+   ---------------------------------- */
+@media (max-width: 1024px) {
+  .leftSidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia 2 cột đều nhau */
+    gap: 12px;
+  }
+}

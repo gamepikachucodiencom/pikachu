@@ -1,0 +1,144 @@
+/* Admin Login - centered on screen */
+
+.root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.card {
+  max-width: 28rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: #111827;
+}
+
+.subtitle {
+  margin: var(--spacing-sm) 0 0 0;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  color: #4b5563;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.errorBox {
+  padding: var(--spacing-md);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+}
+
+.errorText {
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  color: #b91c1c;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  border: 1px solid #d1d5db;
+  background: var(--color-bg-surface);
+  color: var(--color-text-main);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+}
+
+.inputFirst {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.inputLast {
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-top-width: 0;
+}
+
+.inputOnly {
+  border-radius: var(--radius-md);
+}
+
+.inputGroup {
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.inputGroup .fieldGroup {
+  margin-top: -1px;
+}
+
+.inputGroup .fieldGroup:first-child {
+  margin-top: 0;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: white;
+  background: #4f46e5;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

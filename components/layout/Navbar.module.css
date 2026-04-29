@@ -1,0 +1,73 @@
+/* TOÀN BỘ KHUNG HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+  background-color: #111827;
+  border-bottom: 1px solid #374151;
+}
+
+/* KHU VỰC LOGO VÀ KHỐI TRỐNG CÂN BẰNG */
+.logoWrapper,
+.rightSpacer {
+  min-width: 180px; /* Ép 2 bên bằng nhau để menu ở giữa căn chuẩn 100% */
+}
+
+.logoLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  color: #ff9800;
+  font-size: 1.5rem;
+}
+
+.logoText {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* KHU VỰC MENU GIỮA */
+.desktopNav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.navItem {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #9ca3af;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.navItem:hover {
+  color: #ffffff;
+}
+
+/* Hiệu ứng khi đang ở trang đó (Active) */
+.navItem.active {
+  color: #ffffff;
+  background-color: #03a9f4;
+}
+
+/* ẨN TOÀN BỘ HEADER TRÊN MOBILE */
+@media screen and (max-width: 992px) {
+  .header {
+    display: none !important;
+  }
+}

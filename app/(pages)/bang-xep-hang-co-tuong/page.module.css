@@ -1,0 +1,303 @@
+.container {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  padding: 40px 20px;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.headerSection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.title {
+  font-family: var(--font-heading, serif);
+  font-size: 2.8rem;
+  color: #212121;
+  margin-bottom: 8px;
+}
+.description {
+  color: #757575;
+  font-size: 1.1rem;
+}
+
+/* TABS */
+.tabContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.tabButton {
+  padding: 10px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+}
+.tabText {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.tabActive {
+  background-color: #b71c1c;
+  color: #ffffff;
+  border-color: #b71c1c;
+  box-shadow: 0 4px 12px rgba(183, 28, 28, 0.3);
+}
+.tabInactive {
+  color: #757575;
+}
+.tabInactive:hover {
+  background-color: #f5f5f5;
+  color: #212121;
+}
+.tabKnbContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tabKnbIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* MAIN BOARD */
+.listContainer {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+/* FLEX ROW CHUẨN */
+.listHeader,
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.listHeader {
+  padding: 0 16px 12px 16px;
+  font-weight: bold;
+  color: #9e9e9e;
+  font-size: 0.8rem;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 12px;
+}
+.row {
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  background-color: #faf9f6;
+  transition: transform 0.2s ease;
+}
+.row:hover {
+  transform: translateX(4px);
+  border-color: #deb887;
+}
+
+/* VIỀN TOP 1 2 3 */
+.top1 {
+  border: 2px solid #ffd700;
+  background-color: #fffdf5;
+}
+.top2 {
+  border: 1px solid #c0c0c0;
+}
+.top3 {
+  border: 1px solid #cd7f32;
+}
+
+/* CÁC CỘT (Cố định chiều rộng cho chuẩn) */
+.colRank {
+  width: 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.medal {
+  font-size: 1.8rem;
+}
+.rankNumber {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #9e9e9e;
+}
+
+.colUser {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.avatarCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  border: 2px solid #deb887;
+  flex-shrink: 0;
+}
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.userName {
+  font-weight: 700;
+  color: #212121;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.userBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #b71c1c;
+  padding: 2px 6px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.colWinRate {
+  width: 60px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #daa520;
+  flex-shrink: 0;
+}
+.colStats {
+  width: 120px;
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #d32f2f;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* KNB ICON */
+.knbWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.knbIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* FOOTER */
+.footerRow {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #e0e0e0;
+}
+.btnViewAll {
+  color: #b71c1c;
+  font-weight: 700;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.btnViewAll:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   FIX MOBILE: ÉP NHỎ FONT, THU HẸP PADDING
+   ========================================= */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 8px;
+  }
+  .listContainer {
+    padding: 12px 8px;
+  }
+
+  .listHeader {
+    padding: 0 8px 8px 8px;
+    font-size: 0.65rem;
+    gap: 6px;
+  }
+  .row {
+    padding: 8px;
+    margin-bottom: 8px;
+    gap: 6px;
+  }
+
+  /* Thu nhỏ Rank */
+  .colRank {
+    width: 25px;
+  }
+  .medal {
+    font-size: 1.2rem;
+  }
+  .rankNumber {
+    font-size: 1rem;
+  }
+
+  /* Thu nhỏ Avatar & Tên */
+  .colUser {
+    gap: 8px;
+  }
+  .avatarCircle {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+    border-width: 1px;
+  }
+  .userInfo {
+    gap: 2px;
+  }
+  .userName {
+    font-size: 0.9rem;
+  }
+  .userBadge {
+    font-size: 0.55rem;
+    padding: 2px 4px;
+  }
+
+  /* Thu nhỏ Cột Win Rate */
+  .colWinRate {
+    width: 45px;
+    font-size: 0.85rem;
+  }
+
+  /* Thu nhỏ Cột Stats & KNB */
+  .colStats {
+    width: 85px;
+    font-size: 0.9rem;
+  }
+  .knbIcon {
+    width: 14px;
+    height: 14px;
+  }
+  .knbWrapper {
+    gap: 4px;
+  }
+}

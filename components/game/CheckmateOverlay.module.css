@@ -1,0 +1,404 @@
+/* CheckmateOverlay.module.css - Ancient Ink Art Style */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.85) 50%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Particle container */
+.particleContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatParticle 8s ease-in-out infinite;
+}
+
+.particleWin {
+  background: radial-gradient(
+    circle,
+    rgba(218, 165, 32, 0.8) 0%,
+    rgba(218, 165, 32, 0) 70%
+  );
+  box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+}
+
+.particleLose {
+  background: radial-gradient(
+    circle,
+    rgba(60, 50, 40, 0.6) 0%,
+    rgba(40, 30, 25, 0) 70%
+  );
+  box-shadow: 0 0 8px rgba(100, 80, 60, 0.3);
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Main content container */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Ink splash background */
+.inkSplash {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.inkSplashWin {
+  color: var(--color-accent);
+  filter: drop-shadow(0 0 30px rgba(218, 165, 32, 0.4));
+}
+
+.inkSplashLose {
+  color: #3a302a;
+  filter: drop-shadow(0 0 20px rgba(60, 50, 40, 0.5));
+}
+
+/* Seal container with border image */
+.seal {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(3) translateY(-50px);
+  opacity: 0;
+  z-index: 1;
+}
+
+.sealBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Seal inner glow */
+.sealInner {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.sealWinner .sealInner {
+  background: linear-gradient(
+    135deg,
+    rgba(218, 165, 32, 0.15) 0%,
+    rgba(201, 168, 76, 0.1) 50%,
+    rgba(218, 165, 32, 0.15) 100%
+  );
+  box-shadow:
+    0 0 40px rgba(218, 165, 32, 0.4),
+    0 0 80px rgba(218, 165, 32, 0.2),
+    inset 0 0 20px rgba(218, 165, 32, 0.1);
+}
+
+.sealLoser .sealInner {
+  background: linear-gradient(
+    135deg,
+    rgba(183, 28, 28, 0.15) 0%,
+    rgba(139, 26, 26, 0.1) 50%,
+    rgba(183, 28, 28, 0.15) 100%
+  );
+  box-shadow:
+    0 0 40px rgba(183, 28, 28, 0.35),
+    0 0 80px rgba(183, 28, 28, 0.15),
+    inset 0 0 20px rgba(183, 28, 28, 0.1);
+}
+
+/* Seal title text - TFT Inkborn Fables style (display serif, stroke, glow) */
+.sealTitle {
+  font-family: var(--font-game-impact);
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: var(--game-impact-letter-spacing);
+  -webkit-text-stroke: var(--game-impact-stroke-width) #1a1510;
+  paint-order: stroke fill;
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 20px currentColor;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.sealWinner .sealTitle {
+  color: var(--color-accent);
+  -webkit-text-stroke-color: #1a1510;
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(218, 165, 32, 0.6);
+}
+
+.sealLoser .sealTitle {
+  color: #c94a4a;
+  -webkit-text-stroke-color: #1a1510;
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(183, 28, 28, 0.5);
+}
+
+/* Ambient glow animation */
+.sealWinner::after,
+.sealLoser::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: pulseGlow 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sealWinner::after {
+  background: radial-gradient(
+    circle,
+    rgba(218, 165, 32, 0.3) 0%,
+    rgba(218, 165, 32, 0.1) 40%,
+    transparent 70%
+  );
+}
+
+.sealLoser::after {
+  background: radial-gradient(
+    circle,
+    rgba(183, 28, 28, 0.25) 0%,
+    rgba(183, 28, 28, 0.08) 40%,
+    transparent 70%
+  );
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.7;
+  }
+}
+
+/* Brush stroke divider */
+.brushStroke {
+  width: 200px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    currentColor 15%,
+    currentColor 85%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.brushStrokeWin {
+  color: var(--color-accent);
+  box-shadow: 0 0 10px rgba(218, 165, 32, 0.4);
+}
+
+.brushStrokeLose {
+  color: #8b5a5a;
+  box-shadow: 0 0 8px rgba(139, 90, 90, 0.3);
+}
+
+/* Message text */
+.message {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow:
+    1px 1px 3px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-body);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Chess piece icon in message */
+.messageIcon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+/* Close/Confirm button */
+.closeButton {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: var(--spacing-sm);
+  opacity: 0;
+  transform: translateY(15px);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.closeButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.closeButton:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:hover::before {
+  left: 100%;
+}
+
+.closeButton:active {
+  transform: scale(0.98) translateY(0);
+}
+
+/* Winner button accent */
+.closeButtonWin {
+  border-color: rgba(218, 165, 32, 0.3);
+}
+
+.closeButtonWin:hover {
+  border-color: rgba(218, 165, 32, 0.5);
+  box-shadow: 0 4px 20px rgba(218, 165, 32, 0.2);
+}
+
+/* Loser button accent */
+.closeButtonLose {
+  border-color: rgba(183, 28, 28, 0.2);
+}
+
+.closeButtonLose:hover {
+  border-color: rgba(183, 28, 28, 0.4);
+  box-shadow: 0 4px 20px rgba(183, 28, 28, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .seal {
+    width: 150px;
+    height: 150px;
+  }
+
+  .sealInner {
+    width: 100px;
+    height: 100px;
+  }
+
+  .sealTitle {
+    font-size: 2.2rem;
+  }
+
+  .message {
+    font-size: 1.2rem;
+  }
+
+  .inkSplash {
+    width: 300px;
+    height: 300px;
+  }
+
+  .brushStroke {
+    width: 150px;
+  }
+}

@@ -1,0 +1,164 @@
+/* app/[theme]/page.module.css */
+
+.layoutWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 3 CỘT CHO DESKTOP */
+.mainGameArea {
+  display: grid;
+  grid-template-columns: 240px 1fr 280px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* STYLE CHUNG CHO CÁC KHỐI (SHOP, BXH, MENU) */
+.panel {
+  background-color: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.panelTitle {
+  color: #facc15;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* MENU THEME */
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #9ca3af;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.menuItem:hover {
+  background-color: #1f2937;
+  color: #fff;
+}
+.menuItemActive {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+/* CỬA HÀNG */
+.shopItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.buyBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* BXH */
+.rankList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rankItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  background: #1f2937;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.rankTop1 {
+  color: #facc15;
+  font-weight: bold;
+}
+
+/* KHU VỰC SEO BÊN DƯỚI */
+.seoSection {
+  background-color: #ffffff; /* Nền trắng cho chữ dễ đọc, chuẩn SEO blog */
+  border-radius: 12px;
+  padding: 40px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.seoSection h1 {
+  color: #111827;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.seoSection h2 {
+  color: #1f2937;
+  margin: 25px 0 15px 0;
+}
+.seoSection p {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+/* RESPONSIVE MOBILE TỐI ƯU */
+@media (max-width: 1200px) {
+  .mainGameArea {
+    grid-template-columns: 200px 1fr; /* Ẩn cột BXH hoặc đẩy xuống */
+  }
+  .rightCol {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .mainGameArea {
+    grid-template-columns: 1fr; /* Stack dọc hết trên Mobile */
+  }
+  .leftCol {
+    display: flex;
+    gap: 15px;
+  }
+  .panel {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .leftCol {
+    flex-direction: column;
+  }
+}

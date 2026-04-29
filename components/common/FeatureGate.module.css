@@ -1,0 +1,30 @@
+/* FeatureGate.module.css */
+
+.disabledContainer {
+  position: relative;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+.badgeContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background-color: #06b6d4; /* cyan color */
+  color: white;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}

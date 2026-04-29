@@ -1,0 +1,175 @@
+/* GameTimer.module.css - cotuong.com style timer */
+
+/* ============================================
+   1. MAIN CONTAINER
+   ============================================ */
+.timerContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-timer-bg);
+  border: 2px solid var(--color-timer-border);
+  border-radius: var(--radius-md);
+  min-width: clamp(90px, 18vw, 120px);
+  transition: all 0.3s ease;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Active state - glowing border */
+.timerContainer.active {
+  border-color: var(--color-frame-gold);
+  box-shadow:
+    0 0 15px rgba(201, 168, 76, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Low time warning state */
+.timerContainer.lowTime {
+  border-color: var(--color-warning);
+  animation: pulseWarning 1s ease-in-out infinite;
+}
+
+/* Critical time state */
+.timerContainer.criticalTime {
+  border-color: var(--color-danger);
+  animation: pulseCritical 0.5s ease-in-out infinite;
+}
+
+@keyframes pulseWarning {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(245, 124, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(245, 124, 0, 0.6),
+      0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes pulseCritical {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(211, 47, 47, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.4);
+    background: var(--color-timer-bg);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(211, 47, 47, 0.8),
+      0 2px 8px rgba(0, 0, 0, 0.4);
+    background: rgba(211, 47, 47, 0.2);
+  }
+}
+
+/* ============================================
+   2. HOURGLASS ICON
+   ============================================ */
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(20px, 4vw, 28px);
+  height: clamp(20px, 4vw, 28px);
+  flex-shrink: 0;
+}
+
+.hourglassIcon {
+  width: 100%;
+  height: 100%;
+  color: var(--color-frame-gold);
+  transition: all 0.3s ease;
+}
+
+/* Rotating animation when active */
+.hourglassActive {
+  animation: hourglassRotate 2s ease-in-out infinite;
+}
+
+@keyframes hourglassRotate {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+}
+
+/* Low time - orange icon */
+.timerContainer.lowTime .hourglassIcon {
+  color: var(--color-warning);
+}
+
+/* Critical time - red icon */
+.timerContainer.criticalTime .hourglassIcon {
+  color: var(--color-danger);
+}
+
+/* ============================================
+   3. TIME DISPLAY
+   ============================================ */
+.timeDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.timeText {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.875rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: #e8e0d0;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Active state - brighter text */
+.timerContainer.active .timeText {
+  color: #fff;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Low time - orange text */
+.timerContainer.lowTime .timeText {
+  color: var(--color-warning);
+}
+
+/* Critical time - red text */
+.timerContainer.criticalTime .timeText {
+  color: var(--color-danger);
+}
+
+/* ============================================
+   4. RESPONSIVE (padding only; size scaling via clamp above)
+   ============================================ */
+@media (max-width: 1024px) {
+  .timerContainer {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    transform: scale(0.85);
+    transform-origin: center;
+    min-width: clamp(76px, 15.3vw, 102px); /* ~15% smaller than 90px/18vw/120px */
+  }
+
+  .iconContainer {
+    width: clamp(17px, 3.4vw, 24px);
+    height: clamp(17px, 3.4vw, 24px);
+  }
+
+  .timeText {
+    font-size: clamp(0.74rem, 2.1vw, 1.19rem); /* ~15% smaller */
+  }
+}

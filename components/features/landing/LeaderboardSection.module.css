@@ -1,0 +1,255 @@
+/* =========================================
+   LEADERBOARD SECTION (PHONG THẦN BẢNG)
+   ========================================= */
+
+.section {
+  padding: 60px 20px 80px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.container {
+  max-width: 900px; /* Bảng xếp hạng không cần quá bè ngang */
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #212121;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  font-family: 'Merriweather', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #b71c1c;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.tabBtn {
+  background: transparent;
+  border: 2px solid #e0e0e0;
+  padding: 12px 30px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 30px;
+  color: #757575;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tabBtn:hover {
+  border-color: #b71c1c;
+  color: #b71c1c;
+}
+
+.activeTab {
+  background: #b71c1c;
+  border-color: #b71c1c;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
+}
+
+/* BẢNG DANH SÁCH */
+.boardContainer {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+}
+
+.boardList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Từng Hàng (Row) */
+.playerRow {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.playerRow:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  border-color: #e0e0e0;
+}
+
+/* TOP 1 - VÀNG */
+.rank1 {
+  background: linear-gradient(to right, #fffbf0, #fff);
+  border: 1px solid #ffecb3;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.15);
+}
+.rank1 .playerName {
+  color: #f57f17;
+  font-size: 1.3rem;
+}
+
+/* TOP 2 - BẠC */
+.rank2 {
+  background: linear-gradient(to right, #f5f7fa, #fff);
+  border: 1px solid #e0e0e0;
+}
+.rank2 .playerName {
+  color: #546e7a;
+  font-size: 1.15rem;
+}
+
+/* TOP 3 - ĐỒNG */
+.rank3 {
+  background: linear-gradient(to right, #fff5ec, #fff);
+  border: 1px solid #ffe0b2;
+}
+.rank3 .playerName {
+  color: #d84315;
+  font-size: 1.1rem;
+}
+
+/* Cột Rank */
+.rankCol {
+  width: 50px;
+  font-size: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.rankNumber {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #9e9e9e;
+}
+
+/* Cột Thông Tin */
+.infoCol {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #eee;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.playerName {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #212121;
+}
+
+.titleTag {
+  font-size: 0.7rem;
+  background: #b71c1c;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+/* Cột Chỉ Số */
+.statsCol {
+  display: flex;
+  gap: 30px;
+  text-align: right;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #9e9e9e;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #424242;
+  font-family: var(--font-inter, sans-serif);
+}
+
+.rank1 .statValue {
+  color: #f57f17;
+} /* Điểm của Top 1 có màu vàng */
+
+/* Nút XEM TOÀN BỘ */
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px dashed #e0e0e0;
+}
+
+.viewFullBtn {
+  background: transparent;
+  border: none;
+  color: #b71c1c;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.viewFullBtn:hover {
+  text-decoration: underline;
+  color: #d32f2f;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .statsCol {
+    display: none; /* Giấu cột chỉ số trên đt cho đỡ chật, chỉ hiện Tên và Hạng */
+  }
+  .title {
+    font-size: 2.2rem;
+  }
+  .tabs {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+}

@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin routes
+Disallow: /admin/
+
+# Sitemap
+# Note: Update this URL with your actual domain in production
+# Next.js will automatically generate sitemap.xml at /sitemap.xml
+Sitemap: /sitemap.xml
+

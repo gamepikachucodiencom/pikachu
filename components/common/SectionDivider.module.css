@@ -1,0 +1,55 @@
+/* =========================================
+   ĐƯỜNG PHÂN CÁCH SECTION
+   ========================================= */
+.dividerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 60px 20px; /* Khoảng thở rộng rãi cho Desktop */
+  opacity: 0.6;
+  margin: 0 auto;
+}
+
+/* Ép nhỏ lại trên điện thoại */
+@media (max-width: 768px) {
+  .dividerWrapper {
+    padding: 30px 20px; /* Bóp khoảng thở lại chỉ còn một nửa cho Mobile */
+  }
+}
+
+/* Kẻ từ viền mờ dần vào trong */
+.lineLeft,
+.lineRight {
+  height: 1px;
+  width: 100%;
+  max-width: 300px; /* Độ dài tối đa của đường kẻ */
+}
+
+/* Nửa bên trái: Mờ từ trái sang phải đậm dần */
+.lineLeft {
+  background: linear-gradient(90deg, transparent, #b71c1c);
+}
+
+/* Nửa bên phải: Đậm từ trái sang mờ dần về phải */
+.lineRight {
+  background: linear-gradient(270deg, transparent, #b71c1c);
+}
+
+/* Họa tiết viên ngọc ở giữa */
+.ornament {
+  margin: 0 20px;
+  color: #b71c1c;
+  font-size: 1.2rem;
+}
+
+/* Hỗ trợ Dark Mode */
+:global(.dark) .lineLeft {
+  background: linear-gradient(90deg, transparent, #555);
+}
+:global(.dark) .lineRight {
+  background: linear-gradient(270deg, transparent, #555);
+}
+:global(.dark) .ornament {
+  color: #555;
+}

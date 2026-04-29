@@ -1,0 +1,314 @@
+/* =========================================
+   1. LAYOUT CHÍNH & NỀN
+   ========================================= */
+.section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start; /* Bắt đầu từ trên cùng */
+  justify-content: center;
+
+  /* Ảnh nền của bạn */
+  background-image: url('/assets/web/1.jpg');
+  background-size: cover;
+  background-position: center bottom; /* Neo đáy để không mất người */
+  background-repeat: no-repeat;
+
+  padding: 20px;
+  padding-top: 140px; /* Cách mép trên cho Desktop */
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 var(--spacing-md);
+}
+
+.hero {
+  position: relative;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Đẩy nội dung lên trên */
+  overflow: visible;
+  padding: var(--spacing-xl);
+  padding-top: 0;
+}
+
+.heroGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(220, 38, 38, 0.08) 0%,
+    rgba(245, 158, 11, 0.05) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================
+   2. TYPOGRAPHY (CHỮ & TIÊU ĐỀ)
+   ========================================= */
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+  color: var(--color-text-main);
+  background: linear-gradient(359deg, #671d1d 0%, #212121 50%, #000000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 24px rgba(220, 38, 38, 0.2));
+}
+
+.heroDescription {
+  font-family: 'Merriweather', 'Times New Roman', serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #4a0e0e;
+  text-align: center;
+  text-shadow:
+    0 1px 15px rgba(255, 255, 255, 0.9),
+    0 0 5px rgba(255, 255, 255, 0.8);
+  margin: 0;
+  margin-top: 1.5rem;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  white-space: pre-line;
+  width: 800px; /* Khung rộng để chữ thoải mái */
+}
+
+/* =========================================
+   GAME MODES CARDS (FIX: STATIC IMAGE & MOVE UP)
+   ========================================= */
+
+/* 1. Desktop Layout */
+.heroGameModes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  justify-items: center;
+
+  width: 100%;
+  max-width: 900px;
+
+  /* KÉO LÊN TRÊN: Dùng số âm để đẩy sát vào Slogan */
+  margin-top: -20px;
+  padding: 0 20px;
+
+  position: relative;
+  z-index: 10;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- THẺ CARD (CHA) --- */
+.modeCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+
+  /* ĐÃ BỎ ANIMATION TỰ ĐỘNG (ZOOM/BREATHING) */
+  /* Chỉ giữ lại transition để khi hover thì mượt */
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hover: Phóng to cả khối (Hình + Chữ) */
+.modeCard:hover {
+  transform: scale(1.1); /* Phóng to 10% khi di chuột vào */
+  z-index: 100;
+}
+
+/* Hào quang nền */
+.modeCard::before {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  z-index: -1;
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+.modeCard:hover::before {
+  width: 300px;
+  height: 300px;
+  opacity: 0.9;
+}
+
+/* --- ẢNH ICON --- */
+.modeImage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.modeImage img {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  /* Bóng đổ nhẹ cho ảnh */
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+/* --- TEXT TIÊU ĐỀ --- */
+.modeContent {
+  width: 100%;
+  text-align: center;
+  /* Kéo lên đè vào chân ảnh */
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+}
+
+.modeTitle {
+  font-family: 'Merriweather', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  text-transform: capitalize;
+
+  /* Viền sáng bao quanh chữ */
+  text-shadow:
+    2px 2px 0px #faf9f6,
+    -1px -1px 0px #faf9f6,
+    1px -1px 0px #faf9f6,
+    -1px 1px 0px #faf9f6,
+    0 0 15px rgba(255, 255, 255, 0.8);
+
+  transition: all 0.3s ease;
+}
+
+/* --- MÀU SẮC RIÊNG --- */
+.cardPikachu .modeTitle {
+  color: #212121;
+}
+.cardCoup .modeTitle {
+  color: #b71c1c;
+}
+
+/* =========================================
+   3. MOBILE (FLEX - SÁT RẠT)
+   ========================================= */
+@media (max-width: 768px) {
+  .heroGameModes {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0px;
+
+    /* Mobile vẫn cần khoảng cách để không đè lên Slogan */
+    margin-top: 40px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .modeCard {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .modeImage img {
+    width: 48vw;
+    height: 48vw;
+    max-width: 220px;
+    max-height: 220px;
+  }
+
+  /* Hào quang mobile */
+  .modeCard::before {
+    width: 150px;
+    height: 150px;
+    opacity: 0.6;
+  }
+
+  .modeContent {
+    margin-top: -35px;
+  }
+
+  .modeTitle {
+    font-size: 1.5rem;
+    text-shadow:
+      2px 2px 0px #faf9f6,
+      -1px -1px 0 #faf9f6,
+      1px -1px 0 #faf9f6,
+      -1px 1px 0 #faf9f6,
+      0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Fix riêng cho màn hình siêu nhỏ (iPhone 5/SE) */
+@media (max-width: 370px) {
+  .modeImage img {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* =========================================
+   5. RESPONSIVE - TABLET (769px - 1024px)
+   ========================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section {
+    padding-top: 140px;
+  }
+
+  .heroTitle {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 15px;
+  }
+
+  .heroDescription {
+    font-size: 1.4rem;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .heroGameModes {
+    margin-top: 40px;
+    gap: 20px;
+  }
+}
