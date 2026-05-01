@@ -1,13 +1,6 @@
 'use client';
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useEffect,
-} from 'react';
-import { setGlobalToast } from '@/lib/utils/coming-soon';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 import styles from './Toast.module.css';
 
 type ToastType = 'success' | 'error' | 'info';
@@ -37,25 +30,19 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       const id = Date.now();
       setToasts((prev) => [...prev, { id, message, type }]);
 
-      // Auto-dismiss after 3 seconds
+      // Tự động tắt sau 3 giây
       setTimeout(() => {
         setToasts((prev) =>
           prev.map((t) => (t.id === id ? { ...t, isExiting: true } : t))
         );
-        // Wait for animation to finish before removing
+        // Đợi hiệu ứng trượt mờ xong rồi mới xóa
         setTimeout(() => removeToast(id), 300);
       }, 3000);
     },
     [removeToast]
   );
 
-  // Register global toast function for use in non-React contexts
-  useEffect(() => {
-    setGlobalToast(showToast);
-    return () => {
-      setGlobalToast(null);
-    };
-  }, [showToast]);
+  // (Đã dọn dẹp sạch sẽ đoạn useEffect gọi setGlobalToast của cờ tướng)
 
   return (
     <ToastContext.Provider value={{ showToast }}>
@@ -85,8 +72,6 @@ const noopToast = { showToast: () => {} };
 
 export function useToast() {
   const context = useContext(ToastContext);
-  // During SSR or before ToastProvider has mounted (e.g. RSC/streaming), context
-  // can be undefined. Return a no-op instead of throwing so the app doesn't crash.
-  // After hydration, the real context is used and toasts work.
+  // Tránh lỗi khi render phía server (SSR)
   return context ?? noopToast;
 }

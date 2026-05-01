@@ -64,9 +64,6 @@ export default function Footer() {
             <h3 className={styles.colTitle}>Hỗ Trợ</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/bang-xep-hang">Bảng Xếp Hạng</Link>
-              </li>
-              <li>
                 <Link href="/lien-he">Góp Ý / Báo Lỗi</Link>
               </li>
               <li>

@@ -1,6 +1,5 @@
 /**
- * SEO Metadata configuration for all pages
- * Scalable structure for future blog feature
+ * SEO Metadata configuration cho Game Pikachu
  */
 
 export interface PageMetadata {
@@ -12,104 +11,82 @@ export interface PageMetadata {
   canonical?: string;
 }
 
-const siteName = '[Web]'; // Replace with actual site name
+const siteName = 'Game Pikachu Cổ Điển';
 
+// Bơm toàn bộ 8 theme Pikachu của bác vào đây để Next.js tự động làm SEO
 export const pageMetadata: Record<string, PageMetadata> = {
   '/': {
-    title: `Chơi Cờ Tướng, Cờ Úp Online - 2 Người - Với Máy Miễn Phí`,
+    title: `Game Pikachu Cổ Điển 2003 - Chơi Game Pikachu Miễn Phí`,
     description:
-      '"Lạc Nước Hai Xe Đành Bỏ Phí\nĐược Thời Một Tốt Cũng Thành Công".',
-    h1: 'Hội Quán\nKỳ Thủ',
-    keywords: ['cờ tướng', 'cờ tướng online', 'chơi cờ tướng', 'xiangqi'],
-  },
-  '/choi-co-tuong-voi-may': {
-    title: `Chơi Cờ Tướng Với Máy | ${siteName}`,
-    description:
-      'Chơi cờ tướng với AI, máy tính. Nhiều cấp độ khó khác nhau từ dễ đến khó. Rèn luyện kỹ năng cờ tướng của bạn.',
-    h1: 'Chơi Cờ Tướng Với Máy',
-    keywords: ['cờ tướng với máy', 'cờ tướng AI', 'chơi cờ với máy tính'],
-  },
-  '/choi-co-tuong-online': {
-    title: `Đánh Cờ Tướng Online | ${siteName}`,
-    description:
-      'Đánh cờ tướng online với người chơi khác. Tạo phòng, tham gia phòng, chơi cờ tướng trực tuyến.',
-    h1: 'Chơi Cờ Tướng Online',
-    keywords: ['cờ tướng online', 'đánh cờ online', 'chơi cờ với người'],
-  },
-  '/co-up': {
-    title: `Chơi Cờ Úp Online | ${siteName}`,
-    description:
-      'Chơi cờ úp online - biến thể hấp dẫn của cờ tướng. Chơi với người hoặc máy, nhiều chế độ thú vị.',
-    h1: 'Chơi Cờ Úp Online',
-    keywords: ['cờ úp', 'cờ úp online', 'chơi cờ úp'],
-  },
-  '/bang-xep-hang-co-tuong': {
-    title: `Bảng Xếp Hạng Cờ Tướng | ${siteName}`,
-    description:
-      'Xem bảng xếp hạng người chơi cờ tướng. Top người chơi, điểm số, thứ hạng và thống kê.',
-    h1: 'Bảng Xếp Hạng',
-    keywords: ['xếp hạng cờ tướng', 'bảng xếp hạng', 'top người chơi'],
-  },
-  '/ban-co-tuong': {
-    title: `Cửa Hàng Cờ Tướng | ${siteName}`,
-    description:
-      'Mua sắm các vật phẩm cờ tướng: quân cờ đẹp, bàn cờ, theme và nhiều hơn nữa.',
-    h1: 'Cửa Hàng',
-    keywords: ['cửa hàng cờ tướng', 'mua vật phẩm cờ tướng'],
-  },
-  '/dang-nhap': {
-    title: `Đăng Nhập | ${siteName}`,
-    description:
-      'Đăng nhập để chơi cờ tướng online, mua sắm và nhiều tính năng khác.',
-    h1: 'Đăng Nhập',
-  },
-  '/cach-choi-co-tuong': {
-    title: `Học Cờ Tướng - Hướng Dẫn & Bài Viết | ${siteName}`,
-    description:
-      'Học cờ tướng từ cơ bản đến nâng cao. Hướng dẫn khai cuộc, tàn cuộc, giải trận cờ và nhiều bài viết hữu ích khác.',
-    h1: 'Học Cờ Tướng',
+      'Chơi game pikachu cổ điển 2003 bản chuẩn PC. Trải nghiệm game nối thú pikachu kinh điển nhất. Chơi trực tiếp trên web và mobile, không cần cài đặt.',
+    h1: 'Game Pikachu Cổ Điển',
     keywords: [
-      'học cờ tướng',
-      'hướng dẫn cờ tướng',
-      'bài viết cờ tướng',
-      'khai cuộc cờ tướng',
+      'pikachu cổ điển',
+      'game pikachu',
+      'pikachu 2003',
+      'nối thú cổ điển',
     ],
   },
-  // Keep /blog for backward compatibility (redirect can be added later)
-  '/blog': {
-    title: `Học Cờ Tướng - Hướng Dẫn & Bài Viết | ${siteName}`,
+  '/pokemon': {
+    title: `Game Pikachu Pokemon - Nối Thú Cổ Điển Bản Bảo Bối Thần Kỳ`,
     description:
-      'Học cờ tướng từ cơ bản đến nâng cao. Hướng dẫn khai cuộc, tàn cuộc, giải trận cờ và nhiều bài viết hữu ích khác.',
-    h1: 'Học Cờ Tướng',
-    keywords: [
-      'học cờ tướng',
-      'hướng dẫn cờ tướng',
-      'bài viết cờ tướng',
-      'khai cuộc cờ tướng',
-    ],
+      'Chơi game pikachu pokemon miễn phí. Trải nghiệm game nối thú với 156 bảo bối thần kỳ nguyên bản.',
+    h1: 'Pikachu Pokemon',
+    keywords: ['pikachu pokemon', 'nối thú pokemon', 'bảo bối thần kỳ'],
   },
-  '/quen-mat-khau': {
-    title: `Quên Mật Khẩu | ${siteName}`,
-    description: 'Đặt lại mật khẩu tài khoản của bạn',
-    h1: 'Quên Mật Khẩu',
+  '/pikachu-hoa-qua': {
+    title: `Game Pikachu Hoa Quả - Chơi Pikachu Trái Cây Thư Giãn`,
+    description:
+      'Trải nghiệm game pikachu hoa quả tươi mát. Chơi game pikachu trái cây với hình ảnh to rõ, chống mỏi mắt.',
+    h1: 'Pikachu Hoa Quả',
+    keywords: ['pikachu hoa quả', 'pikachu trái cây', 'nối thú hoa quả'],
+  },
+  '/pikachu-dong-vat': {
+    title: `Game Nối Thú - Xếp Thú Động Vật Đáng Yêu Miễn Phí`,
+    description:
+      'Chơi game nối thú pikachu phiên bản động vật siêu dễ thương. Thử tài xếp thú chó, mèo, gấu...',
+    h1: 'Nối Thú Động Vật',
+    keywords: ['nối thú động vật', 'xếp thú', 'game nối thú'],
+  },
+  '/pikachu-do-an': {
+    title: `Game Pikachu Đồ Ăn - Xếp Hình Thức Ăn Nhanh Độc Đáo`,
+    description:
+      'Thử tài chơi game pikachu đồ ăn với các món ẩm thực hấp dẫn. Giao diện nền tối sang trọng.',
+    h1: 'Pikachu Đồ Ăn',
+    keywords: ['pikachu đồ ăn', 'xếp hình đồ ăn', 'nối đồ ăn'],
+  },
+  '/pikachu-emoji': {
+    title: `Game Pikachu Mặt Cười - Thử Thách Xếp Hình Khó Nhất`,
+    description:
+      'Chơi game pikachu mặt cười cực khó, đòi hỏi sự tập trung cao. Vượt qua giới hạn với bảng xếp hình mặt cười giống nhau.',
+    h1: 'Pikachu Mặt Cười',
+    keywords: ['pikachu mặt cười', 'nối thú emoji', 'pikachu emoji'],
+  },
+  '/pikachu-mat-chuoc': {
+    title: `Game Pikachu Mạt Chược - Chơi Xếp Hình Mạt Chược Cổ Điển`,
+    description:
+      'Tìm hiểu cách chơi mạt chược thông qua game pikachu mạt chược. Trò chơi xếp hình điềm tĩnh.',
+    h1: 'Pikachu Mạt Chược',
+    keywords: ['pikachu mạt chược', 'xếp hình mạt chược', 'nối mạt chược'],
+  },
+  '/pikachu-banh-keo': {
+    title: `Game Pikachu Bánh Kẹo - Chơi Candy Ngọt Ngào Xả Stress`,
+    description:
+      'Chơi game pikachu bánh kẹo lấp lánh màu sắc. Tựa game xếp hình thư giãn xả stress cực mạnh.',
+    h1: 'Pikachu Bánh Kẹo',
+    keywords: ['pikachu bánh kẹo', 'nối hình bánh kẹo', 'candy nối hình'],
   },
 };
 
 /**
- * Generate metadata for a page
+ * Lấy metadata theo đường dẫn (Nếu gõ link linh tinh thì tự đẩy về trang chủ)
  */
 export function getPageMetadata(path: string): PageMetadata {
-  return (
-    pageMetadata[path] || {
-      title: `Cờ Tướng Online | ${siteName}`,
-      description: 'Chơi cờ tướng online miễn phí',
-      h1: 'Cờ Tướng Online',
-    }
-  );
+  return pageMetadata[path] || pageMetadata['/'];
 }
 
 /**
- * Generate Next.js metadata object
+ * Khởi tạo cục Metadata chuẩn cho Next.js
  */
 export function generateMetadata(path: string) {
   const meta = getPageMetadata(path);
@@ -122,7 +99,8 @@ export function generateMetadata(path: string) {
     openGraph: {
       title: meta.title,
       description: meta.description,
-      url: `${baseUrl}${path}`,
+      // Fix lỗi dư dấu / nếu đang ở trang chủ
+      url: `${baseUrl}${path === '/' ? '' : path}`,
       siteName: siteName,
       images: meta.ogImage
         ? [{ url: meta.ogImage }]
@@ -136,7 +114,7 @@ export function generateMetadata(path: string) {
       description: meta.description,
     },
     alternates: {
-      canonical: meta.canonical || `${baseUrl}${path}`,
+      canonical: meta.canonical || `${baseUrl}${path === '/' ? '' : path}`,
     },
   };
 }

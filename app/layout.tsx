@@ -1,7 +1,6 @@
 import AppShell from '@/components/layout/AppShell';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import { LightThemeEnforcer } from '@/components/providers/LightThemeEnforcer';
-import { StoreProvider } from '@/components/store/StoreProvider';
 import { ToastProvider } from '@/components/ui/Toast/ToastProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -43,11 +42,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${styles.root}`}>
         <ScrollToTop />
         <LightThemeEnforcer />
-        <StoreProvider>
-          <ToastProvider>
-            <AppShell>{children}</AppShell>
-          </ToastProvider>{' '}
-        </StoreProvider>
+        <ToastProvider>
+          <AppShell>{children}</AppShell>
+        </ToastProvider>
       </body>
     </html>
   );

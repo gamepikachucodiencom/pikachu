@@ -1,6 +1,0 @@
-/* app/chessboard-theme.css – inherits from globals.css, overrides for board only */
-
-.chessBoardTheme {
-  --board-bg: #faf9f6; /* Rice Paper or wood tone */
-  --board-grid: #4a3526; /* Dark brown – main groove line; contrasts with shadow/highlight for depth */
-}
