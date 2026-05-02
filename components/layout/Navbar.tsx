@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className={styles.logoWrapper}>
         <Link href="/" className={styles.logoLink}>
           <span className={styles.logoIcon}>⚡</span>
-          <span className={styles.logoText}>Pikachu Cổ Điển</span>
+          <span className={styles.logoText}>GamePikachuCoDien</span>
         </Link>
       </div>
 

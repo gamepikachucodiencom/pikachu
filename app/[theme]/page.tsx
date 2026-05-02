@@ -15,9 +15,32 @@ export async function generateMetadata({
   // Áp mã theme vào để lôi cục data tương ứng ra
   const seoData = themeSeoContent[themeKey] || themeSeoContent['pokemon'];
 
+  // Lấy tên miền chuẩn từ file .env.local anh em mình vừa sửa
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com';
+
+  // Nối chuỗi để tạo ra cái Canonical URL dài full không trượt phát nào
+  const fullCanonicalUrl = `${baseUrl}/${themeKey}`;
+
   return {
     title: seoData.metaTitle,
     description: seoData.metaDesc,
+
+    // BƠM CANONICAL VÀO ĐÂY LÀ TOOL SEO TẮT ĐIỆN NGAY:
+    alternates: {
+      canonical: fullCanonicalUrl,
+    },
+
+    // ĐÃ GỘP THẺ ROBOTS THÀNH 1 DÒNG DUY NHẤT CỰC GỌN:
+    robots: 'index, follow, max-image-preview:large',
+
+    // Sẵn tiện đắp thêm bộ OpenGraph để share link lên Facebook nó hiện ảnh đẹp
+    openGraph: {
+      title: seoData.metaTitle,
+      description: seoData.metaDesc,
+      url: fullCanonicalUrl,
+      type: 'website',
+    },
   };
 }
 

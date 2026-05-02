@@ -5,7 +5,8 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Thay domain của bác vào đây sau khi có tên miền chính thức nhé
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com';
 
   // Danh sách các URL cực xịn từ bộ SEO content của bác
   const themes = [

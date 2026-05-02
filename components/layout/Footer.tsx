@@ -1,5 +1,4 @@
 import Link from 'next/link';
-// Xóa luôn cái import FooterAiPlayLink đi nhé bác, Pikachu làm gì có AI đánh cờ
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -26,16 +25,17 @@ export default function Footer() {
             <h3 className={styles.colTitle}>Khám Phá</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/">Pikachu Pokemon</Link>
-              </li>
-              <li>
-                <Link href="/pikachu-co-dien-2003">Pikachu Cổ Điển 2003</Link>
+                {/* Đã sửa link trang chủ cho khớp với metadata */}
+                <Link href="/">Pikachu Cổ Điển 2003</Link>
               </li>
               <li>
                 <Link href="/pikachu-hoa-qua">Pikachu Hoa Quả</Link>
               </li>
               <li>
                 <Link href="/pikachu-dong-vat">Pikachu Động Vật</Link>
+              </li>
+              <li>
+                <Link href="/pikachu-mat-chuoc">Pikachu Mạt Chược</Link>
               </li>
             </ul>
           </div>
@@ -54,7 +54,7 @@ export default function Footer() {
                 <Link href="/pikachu-emoji">Pikachu Emoji</Link>
               </li>
               <li>
-                <Link href="/pikachu-mat-chuoc">Pikachu Mạt Chược</Link>
+                <Link href="/pokemon">Pikachu Pokemon</Link>
               </li>
             </ul>
           </div>
@@ -64,13 +64,14 @@ export default function Footer() {
             <h3 className={styles.colTitle}>Hỗ Trợ</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/lien-he">Góp Ý / Báo Lỗi</Link>
+                {/* Đã cập nhật đúng URL router */}
+                <Link href="/gop-y">Góp Ý / Báo Lỗi</Link>
               </li>
               <li>
-                <Link href="/dieu-khoan">Điều Khoản Sử Dụng</Link>
+                <Link href="/dieu-khoan-su-dung">Điều Khoản Sử Dụng</Link>
               </li>
               <li>
-                <Link href="/bao-mat">Chính Sách Bảo Mật</Link>
+                <Link href="/chinh-sach-bao-mat">Chính Sách Bảo Mật</Link>
               </li>
             </ul>
           </div>

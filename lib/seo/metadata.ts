@@ -8,13 +8,14 @@ export interface PageMetadata {
   h1: string;
   keywords?: string[];
   ogImage?: string;
-  canonical?: string;
+  noIndex?: boolean; // Công tắc bật tắt Index cho từng trang
 }
 
 const siteName = 'Game Pikachu Cổ Điển';
 
-// Bơm toàn bộ 8 theme Pikachu của bác vào đây để Next.js tự động làm SEO
+// Kho dữ liệu SEO cho toàn bộ các trang trên Web
 export const pageMetadata: Record<string, PageMetadata> = {
+  // === CÁC TRANG THEME GAME ===
   '/': {
     title: `Game Pikachu Cổ Điển 2003 - Chơi Game Pikachu Miễn Phí`,
     description:
@@ -76,31 +77,74 @@ export const pageMetadata: Record<string, PageMetadata> = {
     h1: 'Pikachu Bánh Kẹo',
     keywords: ['pikachu bánh kẹo', 'nối hình bánh kẹo', 'candy nối hình'],
   },
+
+  // === CÁC TRANG THÔNG TIN THỦ TỤC ===
+  '/gop-y': {
+    title: `Góp Ý & Báo Lỗi | Game Pikachu Cổ Điển`,
+    description:
+      'Liên hệ, đóng góp ý kiến và báo lỗi để giúp Game Pikachu Cổ Điển hoàn thiện hơn.',
+    h1: 'Góp Ý & Báo Lỗi',
+    keywords: ['góp ý', 'báo lỗi', 'liên hệ pikachu'],
+  },
+  '/dieu-khoan-su-dung': {
+    title: `Điều Khoản Sử Dụng | Game Pikachu Cổ Điển`,
+    description:
+      'Các điều khoản sử dụng và quy định khi trải nghiệm Game Pikachu Cổ Điển.',
+    h1: 'Điều Khoản Sử Dụng',
+    noIndex: true, // Chặn Google Bot index trang này
+  },
+  '/chinh-sach-bao-mat': {
+    title: `Chính Sách Bảo Mật | Game Pikachu Cổ Điển`,
+    description:
+      'Chính sách bảo mật thông tin người chơi tại Game Pikachu Cổ Điển.',
+    h1: 'Chính Sách Bảo Mật',
+    noIndex: true, // Chặn Google Bot index trang này
+  },
 };
 
 /**
  * Lấy metadata theo đường dẫn (Nếu gõ link linh tinh thì tự đẩy về trang chủ)
  */
 export function getPageMetadata(path: string): PageMetadata {
-  return pageMetadata[path] || pageMetadata['/'];
+  // Lọc phòng trường hợp đường dẫn truyền vào bị dư dấu / ở cuối
+  const cleanPath =
+    path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+  return pageMetadata[cleanPath] || pageMetadata['/'];
 }
 
 /**
- * Khởi tạo cục Metadata chuẩn cho Next.js
+ * Khởi tạo cục Metadata chuẩn cho Next.js (Tự động tính Canonical URL)
  */
 export function generateMetadata(path: string) {
   const meta = getPageMetadata(path);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com';
+
+  // 1. Lấy tên miền từ biến môi trường (Ưu tiên .env.local, nếu không có thì lấy tên miền thật)
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com';
+
+  // 2. Xác định xem trang này có bị cấm Index không
+  const isNoIndex = meta.noIndex === true;
+
+  // 3. Tự động tính đường dẫn Canonical Full URL
+  const cleanPath =
+    path === '/' ? '' : path.startsWith('/') ? path : `/${path}`;
+  const dynamicFullUrl = `${baseUrl}${cleanPath}`;
 
   return {
     title: meta.title,
     description: meta.description,
     keywords: meta.keywords?.join(', '),
+
+    // Tự động bật/tắt Robots dựa vào cờ noIndex
+    robots: {
+      index: !isNoIndex,
+      follow: true,
+    },
+
     openGraph: {
       title: meta.title,
       description: meta.description,
-      // Fix lỗi dư dấu / nếu đang ở trang chủ
-      url: `${baseUrl}${path === '/' ? '' : path}`,
+      url: dynamicFullUrl, // Tự động điền link chuẩn
       siteName: siteName,
       images: meta.ogImage
         ? [{ url: meta.ogImage }]
@@ -108,13 +152,16 @@ export function generateMetadata(path: string) {
       locale: 'vi_VN',
       type: 'website',
     },
+
     twitter: {
       card: 'summary_large_image',
       title: meta.title,
       description: meta.description,
     },
+
+    // Link Canonical Tự Động - Cứu tinh chống báo lỗi của các công cụ SEO
     alternates: {
-      canonical: meta.canonical || `${baseUrl}${path === '/' ? '' : path}`,
+      canonical: dynamicFullUrl,
     },
   };
 }
