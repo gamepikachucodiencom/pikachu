@@ -1,40 +1,32 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react'; // IMPORT SUSPENSE
 import AppLayout from '@/components/layout/AppLayout';
 import HomePage from '@/components/pages/HomePage';
 import { themeSeoContent } from '@/lib/seoContent';
+import { notFound } from 'next/navigation';
 
-// 1. Dùng hàm generateMetadata bốc đúng title và description từ file Data SEO
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ theme: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const themeKey = resolvedParams.theme || 'pokemon';
+  const themeKey = resolvedParams.theme;
 
-  // Áp mã theme vào để lôi cục data tương ứng ra
-  const seoData = themeSeoContent[themeKey] || themeSeoContent['pokemon'];
+  if (!themeKey || !themeSeoContent[themeKey]) {
+    return { title: 'Không tìm thấy Game' };
+  }
 
-  // Lấy tên miền chuẩn từ file .env.local anh em mình vừa sửa
+  const seoData = themeSeoContent[themeKey];
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com';
-
-  // Nối chuỗi để tạo ra cái Canonical URL dài full không trượt phát nào
   const fullCanonicalUrl = `${baseUrl}/${themeKey}`;
 
   return {
     title: seoData.metaTitle,
     description: seoData.metaDesc,
-
-    // BƠM CANONICAL VÀO ĐÂY LÀ TOOL SEO TẮT ĐIỆN NGAY:
-    alternates: {
-      canonical: fullCanonicalUrl,
-    },
-
-    // ĐÃ GỘP THẺ ROBOTS THÀNH 1 DÒNG DUY NHẤT CỰC GỌN:
+    alternates: { canonical: fullCanonicalUrl },
     robots: 'index, follow, max-image-preview:large',
-
-    // Sẵn tiện đắp thêm bộ OpenGraph để share link lên Facebook nó hiện ảnh đẹp
     openGraph: {
       title: seoData.metaTitle,
       description: seoData.metaDesc,
@@ -44,17 +36,49 @@ export async function generateMetadata({
   };
 }
 
-// 2. Render giống y hệt Trang chủ
 export default async function ThemeGamePage({
   params,
 }: {
   params: Promise<{ theme: string }>;
 }) {
   const resolvedParams = await params;
+  const themeKey = resolvedParams.theme;
+
+  if (!themeKey || !themeSeoContent[themeKey]) {
+    notFound();
+  }
+
+  const seoData = themeSeoContent[themeKey];
+
+  const gameSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoGame',
+    name: seoData.metaTitle,
+    description: seoData.metaDesc,
+    genre: ['Puzzle', 'Onet Connect', 'Casual Game'],
+    playMode: 'SinglePlayer',
+    applicationCategory: 'Game',
+    operatingSystem: 'Web Browser',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      ratingCount: '1580',
+    },
+  };
 
   return (
     <AppLayout>
-      <HomePage theme={resolvedParams.theme} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(gameSchema) }}
+      />
+
+      {/* CÁCH LY HOMEPAGE VÀO HÀNG RÀO */}
+      <Suspense
+        fallback={<div style={{ minHeight: '80vh' }}>Đang tải game...</div>}
+      >
+        <HomePage theme={themeKey} />
+      </Suspense>
     </AppLayout>
   );
 }

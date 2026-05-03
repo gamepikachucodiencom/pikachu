@@ -85,7 +85,7 @@ export const themeSeoContent: Record<string, ThemeSeoData> = {
     metaTitle: 'Game Pikachu Pokemon - Nối Thú Cổ Điển Bản Bảo Bối Thần Kỳ',
     metaDesc:
       'Chơi game pikachu pokemon miễn phí. Trải nghiệm game nối thú với 156 bảo bối thần kỳ nguyên bản. Đồ họa mượt mà, chơi trực tiếp trên điện thoại và PC.',
-    introTitle: 'Pikachu Pokemon - Chinh Phục 156 Bảo Bối Thần Kỳ',
+    introTitle: 'Pikachu Pokemon 2003 - Chinh Phục 156 Bảo Bối Thần Kỳ',
     introParagraphs: [
       'Trò chơi Pikachu Pokemon là một trong những phiên bản game nối thú được yêu thích nhất nhờ hệ thống biểu tượng cực kỳ độc đáo. Lấy cảm hứng từ bộ phim hoạt hình huyền thoại, phiên bản này mang đến trải nghiệm hoài niệm tuyệt đối. Tại đây, bạn sẽ được gặp lại trọn bộ 156 biểu tượng bảo bối thần kỳ nguyên bản như Rùa Squirtle hay Ếch kỳ diệu, được giữ nguyên nét vẽ mộc mạc của những năm 2000.',
       'Hệ thống của chúng tôi được xây dựng hoàn toàn trên nền tảng công nghệ web tân tiến. Điều này cho phép bạn chơi game vô cùng mượt mà, hiệu ứng tia chớp sinh động, không lo nóng máy. Dù bạn đang tranh thủ chơi trên máy tính bàn, hay thao tác vuốt chạm trên điện thoại, trò chơi đều tự động căn chỉnh vừa vặn.',

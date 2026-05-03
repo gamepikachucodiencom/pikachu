@@ -11,7 +11,7 @@ export default function Footer() {
           {/* CỘT 1: THƯƠNG HIỆU */}
           <div className={styles.brandCol}>
             <h2 className={styles.logo}>
-              Pikachu<span>.online</span>
+              GamePikachuCoDien<span>.com</span>
             </h2>
             <p className={styles.slogan}>
               Nền tảng chơi game Pikachu (Onet Connect Animal) trực tuyến miễn
@@ -80,7 +80,7 @@ export default function Footer() {
         {/* PHẦN ĐÁY DƯỚI CÙNG */}
         <div className={styles.bottomSection}>
           <p className={styles.copyright}>
-            &copy; {currentYear} Pikachu.online. All rights reserved.
+            &copy; {currentYear} GamePikachuCoDien.com - All rights reserved.
           </p>
         </div>
       </div>
