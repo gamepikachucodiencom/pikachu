@@ -3,7 +3,7 @@ import ScrollToTop from '@/components/layout/ScrollToTop';
 import { ToastProvider } from '@/components/ui/Toast/ToastProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Script from 'next/script'; // BƯỚC 1: IMPORT THẺ SCRIPT CỦA NEXT.JS
+import Script from 'next/script';
 
 import './globals.css';
 import styles from './layout.module.css';
@@ -17,18 +17,17 @@ const inter = Inter({
 
 // THIẾT LẬP META ROOT CHUẨN SEO
 export const metadata: Metadata = {
-  // Thay domain thật của bác vào đây khi lên LIVE để fix triệt để lỗi Canonical
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com' // Nãy bác lên live rồi thì đổi hẳn sang domain thật luôn cho mượt
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com'
   ),
   title: {
     default: 'Cổng Game Pikachu Online Miễn Phí',
-    template: '%s', // Bắt buộc phải có %s để các trang con tự động điền tên vào
+    template: '%s',
   },
   description:
     'Game Pikachu kinh điển và các phiên bản Onet Connect mới nhất hoàn toàn miễn phí. Tốc độ mượt mà, không cần cài đặt.',
   alternates: {
-    canonical: '/', // Báo cho Google biết đây là URL gốc
+    canonical: '/',
   },
 };
 
@@ -39,8 +38,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${inter.variable} ${styles.root}`}>
-        {/* BƯỚC 2: NHÉT MÃ GOOGLE ANALYTICS VÀO ĐÂY */}
+      <head>
+        {/* NHÉT HẲN GA VÀO HEAD ĐỂ GSC QUÉT CHO DỄ */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-LHLHHMF9HK"
           strategy="afterInteractive"
@@ -54,8 +53,9 @@ export default function RootLayout({
             gtag('config', 'G-LHLHHMF9HK');
           `}
         </Script>
-        {/* KẾT THÚC GOOGLE ANALYTICS */}
+      </head>
 
+      <body className={`${inter.variable} ${styles.root}`}>
         <ScrollToTop />
         <ToastProvider>
           <AppShell>{children}</AppShell>
