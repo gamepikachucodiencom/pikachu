@@ -3,7 +3,6 @@ import ScrollToTop from '@/components/layout/ScrollToTop';
 import { ToastProvider } from '@/components/ui/Toast/ToastProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Script from 'next/script';
 
 import './globals.css';
 import styles from './layout.module.css';
@@ -39,20 +38,21 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <head>
-        {/* NHÉT HẲN GA VÀO HEAD ĐỂ GSC QUÉT CHO DỄ */}
-        <Script
+        {/* GOOGLE ANALYTICS NGUYÊN BẢN ĐỂ GSC XÁC MINH NHANH */}
+        <script
+          async
           src="https://www.googletagmanager.com/gtag/js?id=G-LHLHHMF9HK"
-          strategy="afterInteractive"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-LHLHHMF9HK');
+            `,
+          }}
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-LHLHHMF9HK');
-          `}
-        </Script>
       </head>
 
       <body className={`${inter.variable} ${styles.root}`}>
