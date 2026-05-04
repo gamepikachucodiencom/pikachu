@@ -1,32 +1,42 @@
 import { MetadataRoute } from 'next';
-
-// Ép Next.js render sitemap tĩnh hoàn toàn, cực nhẹ
-export const dynamic = 'force-static';
+// Nhớ import cái themeSeoContent của bác vào nếu đang dùng nó để map theme
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Thay domain của bác vào đây sau khi có tên miền chính thức nhé
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com';
 
-  // Danh sách các URL cực xịn từ bộ SEO content của bác
+  // 1. Khai báo các trang tĩnh (Trang chủ, Chính sách, Góp ý...)
+  const staticRoutes = [
+    '', // Trang chủ
+    '/gop-y',
+    '/dieu-khoan-su-dung',
+    '/chinh-sach-bao-mat',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: route === '' ? 1 : 0.8, // Trang chủ ưu tiên 1, trang phụ ưu tiên 0.8
+  }));
+
+  // 2. Map các trang Theme động của bác (Pokemon, Bánh kẹo...)
+  // Giả sử bác có 1 mảng các theme name như vầy:
   const themes = [
-    '', // Trang chủ (Mặc định là bản Cổ Điển 2003)
-    'pokemon',
     'pikachu-hoa-qua',
     'pikachu-dong-vat',
     'pikachu-do-an',
     'pikachu-emoji',
     'pikachu-mat-chuoc',
     'pikachu-banh-keo',
+    'pokemon',
   ];
 
-  // Tự động generate ra list sitemap
-  const pages: MetadataRoute.Sitemap = themes.map((theme) => ({
-    url: theme ? `${baseUrl}/${theme}` : baseUrl,
+  const dynamicRoutes = themes.map((theme) => ({
+    url: `${baseUrl}/${theme}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: theme === '' ? 1.0 : 0.8, // Trang chủ độ ưu tiên cao nhất
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
   }));
 
-  return pages;
+  // Gộp cả 2 mảng lại và ném ra cho Google
+  return [...staticRoutes, ...dynamicRoutes];
 }
