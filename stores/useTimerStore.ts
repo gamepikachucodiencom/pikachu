@@ -2,207 +2,88 @@
 
 import { create } from 'zustand';
 
-export type TimerPlayer = 'red' | 'black';
-
-interface TimerState {
-  // Time remaining in seconds for each player
-  redTime: number;
-  blackTime: number;
-  // Which player's timer is currently running (null if paused)
-  activePlayer: TimerPlayer | null;
-  // Initial time setting (in seconds)
-  initialTime: number;
-  // Increment per move (in seconds, optional)
-  increment: number;
-  // Is the game timer running?
+interface PikachuTimerState {
+  timeLeft: number;
+  maxTime: number; // Cần thiết để vẽ thanh tiến độ (Progress bar)
+  level: number;
   isRunning: boolean;
-  // Interval ID for the countdown
   intervalId: NodeJS.Timeout | null;
-  // Has any player run out of time?
-  timeoutPlayer: TimerPlayer | null;
 }
 
-interface TimerActions {
-  // Initialize timer with settings
-  initTimer: (initialTime: number, increment?: number) => void;
-  // Start the timer for a specific player
-  startTimer: (player: TimerPlayer) => void;
-  // Switch to the other player's timer (with increment)
-  switchPlayer: () => void;
-  // Pause the timer
-  pauseTimer: () => void;
-  // Resume the timer
-  resumeTimer: () => void;
-  // Reset to initial state
-  resetTimer: () => void;
-  // Get formatted time string (MM:SS)
-  getFormattedTime: (player: TimerPlayer) => string;
-  // Tick function (internal, called by interval)
+interface PikachuTimerActions {
+  initGameTimer: (level: number) => void;
+  startGameTimer: () => void;
+  pauseGameTimer: () => void;
+  addBonusTime: (bonusSeconds: number) => void; // Hàm bơm máu khi nối đúng
   tick: () => void;
+  clearTimer: () => void;
 }
 
-type TimerStore = TimerState & TimerActions;
+type PikachuTimerStore = PikachuTimerState & PikachuTimerActions;
 
-// Default 10 minutes per player
-const DEFAULT_TIME = 10 * 60;
+// Hàm tính thời gian theo Cửa (Level)
+const getInitialTime = (level: number) => {
+  const baseTime = 600; // Cửa 1: 10 phút (600 giây)
+  const timeReduction = (level - 1) * 30; // Mỗi cửa giảm 30 giây
+  return Math.max(baseTime - timeReduction, 60); // Tối thiểu luôn chừa lại 60 giây
+};
 
-export const useTimerStore = create<TimerStore>()((set, get) => ({
-  // Initial state
-  redTime: DEFAULT_TIME,
-  blackTime: DEFAULT_TIME,
-  activePlayer: null,
-  initialTime: DEFAULT_TIME,
-  increment: 0,
+export const useTimerStore = create<PikachuTimerStore>()((set, get) => ({
+  timeLeft: 600,
+  maxTime: 600,
+  level: 1,
   isRunning: false,
   intervalId: null,
-  timeoutPlayer: null,
 
-  // Initialize timer with settings
-  initTimer: (initialTime: number, increment: number = 0) => {
-    const state = get();
-    // Clear any existing interval
-    if (state.intervalId) {
-      clearInterval(state.intervalId);
-    }
+  initGameTimer: (level: number) => {
+    const { clearTimer } = get();
+    clearTimer();
 
+    const initialTime = getInitialTime(level);
     set({
-      redTime: initialTime,
-      blackTime: initialTime,
-      initialTime,
-      increment,
-      activePlayer: null,
+      level,
+      timeLeft: initialTime,
+      maxTime: initialTime,
       isRunning: false,
-      intervalId: null,
-      timeoutPlayer: null,
     });
   },
 
-  // Start the timer for a specific player
-  startTimer: (player: TimerPlayer) => {
+  startGameTimer: () => {
     const state = get();
+    if (state.isRunning) return;
 
-    // Clear any existing interval
-    if (state.intervalId) {
-      clearInterval(state.intervalId);
-    }
-
-    // Create new interval
     const intervalId = setInterval(() => {
       get().tick();
     }, 1000);
 
-    set({
-      activePlayer: player,
-      isRunning: true,
-      intervalId,
-    });
+    set({ isRunning: true, intervalId });
   },
 
-  // Switch to the other player's timer (called after a move)
-  switchPlayer: () => {
-    const state = get();
-
-    if (!state.activePlayer || !state.isRunning) return;
-
-    const currentPlayer = state.activePlayer;
-    const nextPlayer: TimerPlayer = currentPlayer === 'red' ? 'black' : 'red';
-
-    // Add increment to current player's time
-    const currentTimeKey = currentPlayer === 'red' ? 'redTime' : 'blackTime';
-    const newTime = state[currentTimeKey] + state.increment;
-
-    set({
-      [currentTimeKey]: newTime,
-      activePlayer: nextPlayer,
-    });
+  pauseGameTimer: () => {
+    const { intervalId } = get();
+    if (intervalId) clearInterval(intervalId);
+    set({ isRunning: false, intervalId: null });
   },
 
-  // Pause the timer
-  pauseTimer: () => {
-    const state = get();
-
-    if (state.intervalId) {
-      clearInterval(state.intervalId);
-    }
-
-    set({
-      isRunning: false,
-      intervalId: null,
-    });
+  // BƠM MÁU: Cộng thời gian nhưng không được vượt quá maxTime của cửa đó
+  addBonusTime: (bonusSeconds: number) => {
+    const { timeLeft, maxTime } = get();
+    const newTime = Math.min(timeLeft + bonusSeconds, maxTime);
+    set({ timeLeft: newTime });
   },
 
-  // Resume the timer
-  resumeTimer: () => {
-    const state = get();
-
-    if (!state.activePlayer || state.isRunning) return;
-
-    // Create new interval
-    const intervalId = setInterval(() => {
-      get().tick();
-    }, 1000);
-
-    set({
-      isRunning: true,
-      intervalId,
-    });
-  },
-
-  // Reset to initial state
-  resetTimer: () => {
-    const state = get();
-
-    // Clear any existing interval
-    if (state.intervalId) {
-      clearInterval(state.intervalId);
-    }
-
-    set({
-      redTime: state.initialTime,
-      blackTime: state.initialTime,
-      activePlayer: null,
-      isRunning: false,
-      intervalId: null,
-      timeoutPlayer: null,
-    });
-  },
-
-  // Get formatted time string (MM:SS)
-  getFormattedTime: (player: TimerPlayer) => {
-    const state = get();
-    const time = player === 'red' ? state.redTime : state.blackTime;
-
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  },
-
-  // Tick function (decrement active player's time)
   tick: () => {
-    const state = get();
-
-    if (!state.activePlayer || !state.isRunning) return;
-
-    const timeKey = state.activePlayer === 'red' ? 'redTime' : 'blackTime';
-    const currentTime = state[timeKey];
-
-    if (currentTime <= 0) {
-      // Time's up!
-      if (state.intervalId) {
-        clearInterval(state.intervalId);
-      }
-      set({
-        [timeKey]: 0,
-        isRunning: false,
-        intervalId: null,
-        timeoutPlayer: state.activePlayer,
-      });
+    const { timeLeft, clearTimer } = get();
+    if (timeLeft <= 0) {
+      clearTimer();
       return;
     }
+    set({ timeLeft: timeLeft - 1 });
+  },
 
-    set({
-      [timeKey]: currentTime - 1,
-    });
+  clearTimer: () => {
+    const { intervalId } = get();
+    if (intervalId) clearInterval(intervalId);
+    set({ intervalId: null, isRunning: false });
   },
 }));

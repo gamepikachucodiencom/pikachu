@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Application, Container, Graphics, Sprite, Assets } from 'pixi.js';
 import styles from './PikachuBoard.module.css';
+import { useTimerStore } from '../../stores/useTimerStore';
 
 const ROWS = 9;
 const COLS = 16;
@@ -30,6 +31,16 @@ export default function PikachuBoard({
   const pixiContainerRef = useRef<HTMLDivElement>(null);
   const [isPortrait, setIsPortrait] = useState(false);
 
+  // LẤY STATE TỪ STORE THỜI GIAN
+  const {
+    timeLeft,
+    maxTime,
+    startGameTimer,
+    pauseGameTimer,
+    initGameTimer,
+    clearTimer,
+  } = useTimerStore();
+
   const themeIcons = useMemo(() => {
     return Array.from(
       { length: TOTAL_ICONS },
@@ -39,7 +50,6 @@ export default function PikachuBoard({
 
   // --- TRẠNG THÁI GAME ---
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(300);
   const [gameState, setGameState] = useState<'playing' | 'won' | 'lost'>(
     'playing'
   );
@@ -50,9 +60,11 @@ export default function PikachuBoard({
 
   const isMutedRef = useRef(isMuted);
   const levelRef = useRef(level);
+
   useEffect(() => {
     isMutedRef.current = isMuted;
   }, [isMuted]);
+
   useEffect(() => {
     levelRef.current = level;
   }, [level]);
@@ -77,19 +89,28 @@ export default function PikachuBoard({
     };
   }, []);
 
+  // KHỞI TẠO ĐỒNG HỒ KHI VÀO GAME
   useEffect(() => {
-    if (gameState !== 'playing') return;
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          setGameState('lost');
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [gameState]);
+    initGameTimer(1);
+    return () => clearTimer(); // Dọn dẹp khi thoát component
+  }, [initGameTimer, clearTimer]);
+
+  // ĐIỀU KHIỂN CHẠY/DỪNG ĐỒNG HỒ DỰA THEO TRẠNG THÁI GAME
+  useEffect(() => {
+    if (gameState === 'playing') {
+      startGameTimer();
+    } else {
+      pauseGameTimer();
+    }
+  }, [gameState, startGameTimer, pauseGameTimer]);
+
+  // NẾU HẾT GIỜ -> XỬ THUA GAME
+  useEffect(() => {
+    // Phải có maxTime > 0 để chặn thằng React bắt lỗi láo lúc vừa F5
+    if (maxTime > 0 && timeLeft <= 0 && gameState === 'playing') {
+      setGameState('lost');
+    }
+  }, [timeLeft, maxTime, gameState]);
 
   useEffect(() => {
     if (
@@ -565,11 +586,6 @@ export default function PikachuBoard({
         const sv_c = selectedTile.c + 1;
 
         if (board[sv_r][sv_c] === board[vr][vc]) {
-          const path = findPath(
-            { r: sv_r, c: sv_c },
-            { r: vr, c: board[vr][vc] === board[sv_r][sv_c] ? vc : -1 },
-            board
-          ); // fix dummy call
           const realPath = findPath(
             { r: sv_r, c: sv_c },
             { r: vr, c: vc },
@@ -586,7 +602,10 @@ export default function PikachuBoard({
 
             const t1 = tileContainers[selectedTile.r][selectedTile.c];
             const t2 = tileContainers[r][c];
+
+            // CỘNG ĐIỂM VÀ BƠM MÁU THỜI GIAN KHI ĂN ĐƯỢC 1 CẶP
             setScore((s) => s + 10);
+            useTimerStore.getState().addBonusTime(2); // Thưởng 2 giây
 
             setTimeout(() => {
               if (t1) t1.visible = false;
@@ -599,15 +618,17 @@ export default function PikachuBoard({
 
               setMatchedPairs((prev) => {
                 const currentMatches = prev + 1;
+
+                // NẾU QUA MÀN
                 if (currentMatches === TOTAL_PAIRS) {
                   playSound('shuffle');
-                  setLevel((l) => l + 1);
+                  const nextLevel = levelRef.current + 1;
+                  setLevel(nextLevel);
                   setShuffles((s) => s + 1);
 
-                  setTimeLeft((prevTime) => {
-                    const nextLevel = levelRef.current + 1;
-                    return Math.max(300 - nextLevel * 10, 120);
-                  });
+                  // SET THỜI GIAN THEO LEVEL MỚI BẰNG STORE
+                  useTimerStore.getState().initGameTimer(nextLevel);
+                  useTimerStore.getState().startGameTimer();
 
                   setTimeout(() => {
                     triggerBoardRebuildRef.current?.();
@@ -666,6 +687,31 @@ export default function PikachuBoard({
     };
   }, [gameState, themeIcons]);
 
+  // --- HÀM RESET GAME TỐI ƯU (Thay thế reload web) ---
+  const resetGame = () => {
+    if (!isMutedRef.current) {
+      const audio = new Audio('/sounds/restart.mp3');
+      audio.volume = 0.6;
+      audio.play().catch(() => {});
+    }
+
+    // Đưa mọi thứ về lại số 0
+    setScore(0);
+    setLevel(1);
+    setShuffles(10);
+    setMatchedPairs(0);
+    setGameState('playing');
+
+    // Đặt lại đồng hồ
+    initGameTimer(1);
+    startGameTimer();
+
+    // Kích hoạt build lại bàn cờ PixiJS lập tức
+    setTimeout(() => {
+      triggerBoardRebuildRef.current?.();
+    }, 100);
+  };
+
   // ================= UI COMPONENTS =================
   const StatBlock = ({
     title,
@@ -695,6 +741,10 @@ export default function PikachuBoard({
       <span className={styles.actionText}>{text}</span>
     </button>
   );
+
+  // TÍNH TOÁN % CHO THANH THỜI GIAN BÊN PHẢI
+  const timePercentage = maxTime > 0 ? (timeLeft / maxTime) * 100 : 0;
+  const isTimeWarning = timeLeft <= 60; // Báo động đỏ khi dưới 60s
 
   return (
     <div className={styles.gameWrapper}>
@@ -726,24 +776,11 @@ export default function PikachuBoard({
             text="Đảo cờ"
             onClick={() => triggerShuffleRef.current?.()}
           />
-          <ActionBtn
-            icon="🕹️"
-            text="Chơi lại"
-            onClick={() => {
-              if (!isMuted) {
-                const audio = new Audio('/sounds/restart.mp3');
-                audio.volume = 0.6;
-                audio.play().catch(() => {});
-              }
-              setTimeout(() => {
-                window.location.reload();
-              }, 600);
-            }}
-          />
+          {/* NÚT CHƠI LẠI TRONG SIDEBAR */}
+          <ActionBtn icon="🕹️" text="Chơi lại" onClick={resetGame} />
         </div>
       </div>
 
-      {/* --- NÚT BẤM MENU HÌNH VIÊN THUỐC --- */}
       <button
         className={styles.mobileMenuBtnCapsule}
         onClick={() => onOpenMenu && onOpenMenu()}
@@ -772,13 +809,12 @@ export default function PikachuBoard({
           <div
             className={styles.timeBarFill}
             style={{
-              height: `${(timeLeft / 300) * 100}%`,
-              // ÉP MÀU XANH LƠ TẠI ĐÂY ĐỂ ĐÈ MỌI CSS (VÀ CHỚP ĐỎ NẾU DƯỚI 60S)
-              backgroundColor: timeLeft <= 60 ? '#ef4444' : '#03A9F4',
-              boxShadow:
-                timeLeft <= 60
-                  ? '0 0 10px rgba(239, 68, 68, 0.6)'
-                  : '0 0 10px rgba(3, 169, 244, 0.5)',
+              height: `${timePercentage}%`,
+              backgroundColor: isTimeWarning ? '#ef4444' : '#03A9F4',
+              boxShadow: isTimeWarning
+                ? '0 0 10px rgba(239, 68, 68, 0.6)'
+                : '0 0 10px rgba(3, 169, 244, 0.5)',
+              transition: 'height 1s linear, background-color 0.3s ease',
             }}
           />
         </div>
@@ -804,10 +840,8 @@ export default function PikachuBoard({
               {score}
             </span>
           </p>
-          <button
-            className={styles.overlayBtn}
-            onClick={() => window.location.reload()}
-          >
+          {/* NÚT CHƠI LẠI TRÊN MÀN HÌNH OVERLAY */}
+          <button className={styles.overlayBtn} onClick={resetGame}>
             Chơi Lại
           </button>
         </div>

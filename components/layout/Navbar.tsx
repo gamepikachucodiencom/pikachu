@@ -11,10 +11,10 @@ const NAV_GAMES = [
   { id: 'pikachu-hoa-qua', name: 'Hoa Quả' },
   { id: 'pikachu-dong-vat', name: 'Động Vật' },
   { id: 'pikachu-do-an', name: 'Đồ Ăn' },
-  { id: 'pikachu-emoji', name: 'Mặt Cười' },
-  { id: 'pikachu-mat-chuoc', name: 'Mạt Chược' },
-  { id: 'pikachu-banh-keo', name: 'Bánh Kẹo' },
   { id: 'pokemon', name: 'Pokemon' },
+  { id: 'pikachu-mat-chuoc', name: 'Mạt Chược' },
+  { id: 'pikachu-emoji', name: 'Emoji' },
+  { id: 'pikachu-banh-keo', name: 'Bánh Kẹo' },
 ];
 
 export default function Navbar() {

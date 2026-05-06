@@ -24,9 +24,9 @@ const THEMES_LIST = [
     image: '/assets/thumbnails/pikachu-do-an.webp',
   },
   {
-    id: 'pikachu-emoji',
-    name: 'Pikachu Emoji',
-    image: '/assets/thumbnails/pikachu-emoji.webp',
+    id: 'pokemon',
+    name: 'Pikachu Pokemon',
+    image: '/assets/thumbnails/pikachu-pokemon.webp',
   },
   {
     id: 'pikachu-mat-chuoc',
@@ -34,14 +34,14 @@ const THEMES_LIST = [
     image: '/assets/thumbnails/pikachu-mat-chuoc.webp',
   },
   {
+    id: 'pikachu-emoji',
+    name: 'Pikachu Emoji',
+    image: '/assets/thumbnails/pikachu-emoji.webp',
+  },
+  {
     id: 'pikachu-banh-keo',
     name: 'Pikachu Bánh Kẹo',
     image: '/assets/thumbnails/pikachu-banh-keo.webp',
-  },
-  {
-    id: 'pokemon',
-    name: 'Pikachu Pokemon',
-    image: '/assets/thumbnails/pikachu-pokemon.webp',
   },
 ];
 
