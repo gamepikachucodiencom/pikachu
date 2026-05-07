@@ -156,18 +156,11 @@ export default function PikachuBoard({
       }
 
       const canvasEl = app.canvas;
-
-      // Ép cứng 100% khung cha, objectFit sẽ lo việc giữ đúng tỉ lệ không bị méo ảnh
-      canvasEl.style.width = '100%';
-      canvasEl.style.height = '100%';
-      canvasEl.style.objectFit = 'contain';
-      canvasEl.style.touchAction = 'none';
-
-      containerElement.appendChild(canvasEl);
-
-      // THÊM CÁI NÀY ĐỂ ÉP ẢNH CANVAS KHÔNG BỊ MÉO TRÊN MOBILE
-      canvasEl.style.objectFit = 'contain';
-
+      canvasEl.style.maxWidth = '100%';
+      canvasEl.style.maxHeight = '100%';
+      canvasEl.style.width = 'auto';
+      canvasEl.style.height = 'auto';
+      canvasEl.style.aspectRatio = `${BOARD_WIDTH} / ${BOARD_HEIGHT}`;
       canvasEl.style.touchAction = 'none';
       containerElement.appendChild(canvasEl);
 
@@ -807,9 +800,6 @@ export default function PikachuBoard({
           alignItems: 'center',
           minWidth: 0,
           minHeight: 0,
-          /* ÉP BÀN CỜ VỪA MÀN HÌNH MOBILE */
-          height: '100%',
-          overflow: 'hidden',
         }}
       />
 
