@@ -158,9 +158,13 @@ export default function PikachuBoard({
       const canvasEl = app.canvas;
       canvasEl.style.maxWidth = '100%';
       canvasEl.style.maxHeight = '100%';
+
+      /* TRẢ LẠI AUTO ĐỂ DESKTOP KHÔNG BỊ PHÌNH TO */
       canvasEl.style.width = 'auto';
       canvasEl.style.height = 'auto';
+
       canvasEl.style.aspectRatio = `${BOARD_WIDTH} / ${BOARD_HEIGHT}`;
+      canvasEl.style.objectFit = 'contain';
       canvasEl.style.touchAction = 'none';
       containerElement.appendChild(canvasEl);
 

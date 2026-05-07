@@ -1,5 +1,5 @@
 /* =========================================
-   1. BỐ CỤC CHUNG BÀN GAME
+   1. BỐ CỤC CHUNG BÀN GAME (DESKTOP)
    ========================================= */
 .gameWrapper {
   width: 100%;
@@ -12,6 +12,7 @@
   padding: 10px;
   gap: 10px;
   position: relative;
+  box-sizing: border-box; /* Bắt buộc để padding không phá vỡ khung */
 }
 
 /* =========================================
@@ -57,14 +58,13 @@
   padding-top: 10px;
 }
 
-/* --- THÊM VẠCH CHIA GIỮA CÁC ICON --- */
 .actionBtn:not(:last-child) {
-  border-bottom: 1px solid #374151; /* Vạch chia ngang cho cột */
+  border-bottom: 1px solid #374151;
 }
 
 .actionBtn {
   width: 100%;
-  padding: 10px 0; /* Tăng padding để vạch chia rõ hơn */
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,13 +161,12 @@
   padding: 1px;
 }
 
-/* --- ĐỔI MÀU THANH THỜI GIAN SANG CYAN --- */
 .timeBarFill {
   width: 100%;
   border-radius: 4px;
   transition: height 1s linear;
-  background-color: #03a9f4; /* Màu xanh cyan sáng */
-  box-shadow: 0 0 10px rgba(3, 169, 244, 0.5); /* Hiệu ứng phát sáng */
+  background-color: #03a9f4;
+  box-shadow: 0 0 10px rgba(3, 169, 244, 0.5);
 }
 
 /* =========================================
@@ -236,9 +235,30 @@
 }
 
 /* =========================================
-   6. RESPONSIVE MOBILE NGANG (ĐIỆN THOẠI LÙN)
+   6. RESPONSIVE ĐỘC LẬP CHO MOBILE NGANG
    ========================================= */
-@media (max-height: 500px) {
+@media (max-height: 500px), (max-width: 1024px) and (orientation: landscape) {
+  /* Cứu cánh Mobile: Ép khung game né thanh địa chỉ trình duyệt */
+  .gameWrapper {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+  }
+
+  /* Kỹ thuật CSS xịn: Tóm cổ thẻ div bọc bàn cờ (Thẻ không có tên class) để ép không tràn lề */
+  .gameWrapper > div:not([class]) {
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* Ép cái bàn cờ Canvas teo lại vừa khít với màn hình nhỏ */
+  .gameWrapper canvas {
+    height: 100% !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  /* Tinh chỉnh Sidebar cho đỡ vướng */
   .leftSidebar {
     padding: 4px 2px;
   }
@@ -254,20 +274,17 @@
   .bottomActions {
     padding-top: 4px;
     gap: 0;
-  } /* Xóa khoảng cách mặc định */
-
-  /* Đảm bảo vạch chia vẫn hoạt động trên Mobile */
+  }
   .actionBtn:not(:last-child) {
     border-bottom: 1px solid #374151;
   }
-
   .actionBtn {
     padding: 6px 0;
-  } /* Tăng size icon trên mobile */
+  }
   .actionIcon {
     font-size: 1.2rem;
     margin-bottom: 0;
-  } /* Giữ size to */
+  }
   .actionText {
     font-size: 0.6rem;
   }
