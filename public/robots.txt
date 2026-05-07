@@ -8,5 +8,5 @@ Disallow: /admin/
 # Sitemap
 # Note: Update this URL with your actual domain in production
 # Next.js will automatically generate sitemap.xml at /sitemap.xml
-Sitemap: /sitemap.xml
+Sitemap: https://www.gamepikachucodien.com/sitemap.xml
 

@@ -12,6 +12,10 @@
   padding: 10px;
   gap: 10px;
   position: relative;
+  /* Các CSS cũ bác cứ giữ nguyên, thêm 3 dòng này vào */
+  height: 100dvh; /* dvh (dynamic viewport height) sẽ tự tính trừ hao cái thanh địa chỉ trình duyệt */
+  max-height: -webkit-fill-available; /* Fallback cho mấy trình duyệt iOS cũ */
+  overflow: hidden; /* Cấm tuyệt đối không cho thanh cuộn dọc xuất hiện */
 }
 
 /* =========================================

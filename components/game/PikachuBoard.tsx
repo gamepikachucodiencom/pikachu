@@ -161,6 +161,10 @@ export default function PikachuBoard({
       canvasEl.style.width = 'auto';
       canvasEl.style.height = 'auto';
       canvasEl.style.aspectRatio = `${BOARD_WIDTH} / ${BOARD_HEIGHT}`;
+
+      // THÊM CÁI NÀY ĐỂ ÉP ẢNH CANVAS KHÔNG BỊ MÉO TRÊN MOBILE
+      canvasEl.style.objectFit = 'contain';
+
       canvasEl.style.touchAction = 'none';
       containerElement.appendChild(canvasEl);
 
@@ -800,6 +804,9 @@ export default function PikachuBoard({
           alignItems: 'center',
           minWidth: 0,
           minHeight: 0,
+          /* ÉP BÀN CỜ VỪA MÀN HÌNH MOBILE */
+          height: '100%',
+          overflow: 'hidden',
         }}
       />
 

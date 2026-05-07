@@ -20,7 +20,7 @@ export async function generateMetadata({
   const seoData = themeSeoContent[themeKey];
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://gamepikachucodien.com';
-  const fullCanonicalUrl = `${baseUrl}/${themeKey}`;
+  const fullCanonicalUrl = `${baseUrl}/${themeKey}/`;
 
   return {
     title: seoData.metaTitle,
