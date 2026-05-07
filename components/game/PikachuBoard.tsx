@@ -156,10 +156,10 @@ export default function PikachuBoard({
       }
 
       const canvasEl = app.canvas;
-      // === FIX CHỈ CHO PHÉP CANVAS CO GIÃN ĐÚNG TỈ LỆ ===
-      canvasEl.style.width = '100%';
-      canvasEl.style.height = '100%';
-      canvasEl.style.objectFit = 'contain';
+      canvasEl.style.maxWidth = '100%';
+      canvasEl.style.maxHeight = '100%';
+      canvasEl.style.width = 'auto';
+      canvasEl.style.height = 'auto';
       canvasEl.style.aspectRatio = `${BOARD_WIDTH} / ${BOARD_HEIGHT}`;
       canvasEl.style.touchAction = 'none';
       containerElement.appendChild(canvasEl);
@@ -800,10 +800,6 @@ export default function PikachuBoard({
           alignItems: 'center',
           minWidth: 0,
           minHeight: 0,
-          /* === ÉP KHUNG PIXI CHỈ ĐƯỢC 100% VÀ KHÔNG ĐƯỢC TRÀN === */
-          width: '100%',
-          height: '100%',
-          overflow: 'hidden',
         }}
       />
 

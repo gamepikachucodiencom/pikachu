@@ -272,24 +272,3 @@
     font-size: 0.6rem;
   }
 }
-
-/* =========================================
-   7. ĐẶC TRỊ MOBILE NGANG (TRÀN VIỀN, MẤT CHÂN)
-   (hover: none) ĐỂ KHÔNG CHẠM VÀO DESKTOP
-   ========================================= */
-@media (max-width: 1024px) and (orientation: landscape) and (hover: none) {
-  .gameWrapper {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100vw !important;
-    height: 100svh !important;
-    max-height: 100svh !important;
-    z-index: 9999 !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    gap: 5px !important;
-  }
-}
