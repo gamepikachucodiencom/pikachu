@@ -106,7 +106,6 @@ export default function PikachuBoard({
 
   // NẾU HẾT GIỜ -> XỬ THUA GAME
   useEffect(() => {
-    // Phải có maxTime > 0 để chặn thằng React bắt lỗi láo lúc vừa F5
     if (maxTime > 0 && timeLeft <= 0 && gameState === 'playing') {
       setGameState('lost');
     }
@@ -156,16 +155,16 @@ export default function PikachuBoard({
       }
 
       const canvasEl = app.canvas;
-      canvasEl.style.maxWidth = '100%';
-      canvasEl.style.maxHeight = '100%';
 
-      /* TRẢ LẠI AUTO ĐỂ DESKTOP KHÔNG BỊ PHÌNH TO */
-      canvasEl.style.width = 'auto';
-      canvasEl.style.height = 'auto';
-
+      // ==========================================
+      // ĐÃ SỬA CĂN CHỈNH CANVAS CHO MOBILE TẠI ĐÂY
+      // ==========================================
+      canvasEl.style.width = '100%';
+      canvasEl.style.height = '100%';
       canvasEl.style.aspectRatio = `${BOARD_WIDTH} / ${BOARD_HEIGHT}`;
       canvasEl.style.objectFit = 'contain';
       canvasEl.style.touchAction = 'none';
+
       containerElement.appendChild(canvasEl);
 
       const gameContainer = new Container();
@@ -691,7 +690,7 @@ export default function PikachuBoard({
     };
   }, [gameState, themeIcons]);
 
-  // --- HÀM RESET GAME TỐI ƯU (Thay thế reload web) ---
+  // --- HÀM RESET GAME TỐI ƯU ---
   const resetGame = () => {
     if (!isMutedRef.current) {
       const audio = new Audio('/sounds/restart.mp3');
@@ -699,18 +698,15 @@ export default function PikachuBoard({
       audio.play().catch(() => {});
     }
 
-    // Đưa mọi thứ về lại số 0
     setScore(0);
     setLevel(1);
     setShuffles(10);
     setMatchedPairs(0);
     setGameState('playing');
 
-    // Đặt lại đồng hồ
     initGameTimer(1);
     startGameTimer();
 
-    // Kích hoạt build lại bàn cờ PixiJS lập tức
     setTimeout(() => {
       triggerBoardRebuildRef.current?.();
     }, 100);
@@ -746,9 +742,8 @@ export default function PikachuBoard({
     </button>
   );
 
-  // TÍNH TOÁN % CHO THANH THỜI GIAN BÊN PHẢI
   const timePercentage = maxTime > 0 ? (timeLeft / maxTime) * 100 : 0;
-  const isTimeWarning = timeLeft <= 60; // Báo động đỏ khi dưới 60s
+  const isTimeWarning = timeLeft <= 60;
 
   return (
     <div className={styles.gameWrapper}>
@@ -780,7 +775,6 @@ export default function PikachuBoard({
             text="Đảo cờ"
             onClick={() => triggerShuffleRef.current?.()}
           />
-          {/* NÚT CHƠI LẠI TRONG SIDEBAR */}
           <ActionBtn icon="🕹️" text="Chơi lại" onClick={resetGame} />
         </div>
       </div>
@@ -794,7 +788,9 @@ export default function PikachuBoard({
         <span className={styles.menuText}>Game Khác</span>
       </button>
 
-      {/* --- BÀN CỜ PIXIJS --- */}
+      {/* ========================================== */}
+      {/* BÀN CỜ PIXIJS ĐÃ SỬA CSS BỌC NGOÀI */}
+      {/* ========================================== */}
       <div
         ref={pixiContainerRef}
         style={{
@@ -804,6 +800,9 @@ export default function PikachuBoard({
           alignItems: 'center',
           minWidth: 0,
           minHeight: 0,
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
         }}
       />
 
@@ -844,7 +843,6 @@ export default function PikachuBoard({
               {score}
             </span>
           </p>
-          {/* NÚT CHƠI LẠI TRÊN MÀN HÌNH OVERLAY */}
           <button className={styles.overlayBtn} onClick={resetGame}>
             Chơi Lại
           </button>
