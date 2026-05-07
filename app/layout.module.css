@@ -251,40 +251,46 @@
    6. ĐẶC TRỊ MOBILE LANDSCAPE (XOAY NGANG)
    ========================================= */
 @media (max-width: 1024px) and (orientation: landscape) and (hover: none) {
+  /* Khóa cứng thanh cuộn toàn trang */
   :global(body),
   :global(html) {
     overflow: hidden !important;
     height: 100svh !important;
-    margin: 0;
-    padding: 0;
-  }
-  .container {
-    padding: 0 !important;
-    height: 100svh;
-    overflow: hidden;
-  }
-  .dashboardSection {
-    padding: 0 !important;
     margin: 0 !important;
-    max-width: 100vw !important;
-    height: 100svh;
-  }
-  .dashboardGrid {
-    display: block;
-    height: 100svh;
+    padding: 0 !important;
   }
 
-  /* Bóp chết cái min-height 600px & 450px ở đây */
+  /* NHẤC BỔNG GAME LÊN VÀ ÉP CHO PHÉP TEO NHỎ */
   .gameArea {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100svh !important;
+    min-height: 0 !important; /* QUAN TRỌNG NHẤT: Bằng 0 để cho phép game co lại */
+    max-height: 100svh !important;
     border-radius: 0 !important;
     border: none !important;
     padding: 0 !important;
-    width: 100vw !important;
-    height: 100svh !important;
-    min-height: 100svh !important;
-    max-height: 100svh !important;
+    margin: 0 !important;
+    z-index: 99999 !important; /* Đè lên tất cả mọi thứ của trang web */
+    background-color: #111827 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
+  /* KHÓA MÕM CANVAS: Bắt buộc bóp lại theo chiều cao màn hình */
+  .gameArea canvas,
+  .boardWrapper canvas {
+    max-height: 100svh !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  /* Ẩn sạch các cột râu ria xung quanh */
+  .leftSidebar,
   .sidebar,
   .authCTA,
   .seoSection {
