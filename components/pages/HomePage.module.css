@@ -169,7 +169,7 @@
     .dashboardSection {
       padding: 0 !important;
       margin: 0 !important;
-      height: 50svh !important;
+      height: 60svh !important;
     }
 
     /* 2. Đẩy toàn bộ xuống sát đáy */
@@ -177,18 +177,9 @@
       display: flex !important;
       flex-direction: column !important;
       justify-content: flex-end !important; /* MẤU CHỐT: Dồn hết xuống mép dưới */
-      height: 100svh !important;
+      height: 60svh !important;
       margin: 0 !important;
       padding: 0 !important;
-    }
-
-    /* 3. Gọt chiều cao game còn 85% */
-    .gameArea {
-      min-height: unset !important;
-      height: 85svh !important; /* 15% còn lại sẽ là khoảng trống ở đỉnh màn hình */
-      padding: 5px !important; /* Chỉ giữ padding bên trong viền cho đẹp */
-      margin: 0 !important;
-      width: 100% !important;
     }
   }
 }
