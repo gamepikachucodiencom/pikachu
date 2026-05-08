@@ -160,21 +160,40 @@
     display: block;
     height: 100svh;
   }
+  /* =========================================
+   ÉP GAME SÁT ĐÁY MÀN HÌNH (NÉ THANH ĐỊA CHỈ TRÊN)
+   ========================================= */
+  @media (max-width: 1024px) and (orientation: landscape) {
+    .container,
+    .dashboardSection {
+      padding: 0 !important;
+      margin: 0 !important;
+      height: 100svh !important;
+      min-height: 100svh !important;
+    }
 
-  /* Bóp chết cái min-height 600px & 450px ở đây */
-  .gameArea {
-    border-radius: 0 !important;
-    border: none !important;
-    padding: 0 !important;
-    width: 100vw !important;
-    height: 100svh !important;
-    min-height: 100svh !important;
-    max-height: 100svh !important;
-    background-color: #000;
-  }
+    /* Khóa cổ thằng bố, đổi trục dọc và đẩy con xuống đáy */
+    .dashboardGrid {
+      display: flex !important;
+      flex-direction: column !important; /* Đổi sang xếp dọc */
+      justify-content: flex-end !important; /* ĐẨY TOÀN BỘ XUỐNG SÁT ĐÁY */
+      align-items: center !important; /* Căn giữa theo chiều ngang */
+      height: 100svh !important;
+      min-height: 100svh !important;
+    }
 
-  .sideColumn,
-  .seoSection {
-    display: none !important;
+    /* Game bám đáy, chừa lại khoảng trống phía trên cho URL Bar */
+    .gameArea {
+      min-height: unset !important;
+      height: 85svh !important; /* Bác có thể tự tinh chỉnh 80svh hay 85svh cho vừa mắt */
+      padding: 5px !important;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+
+    .sideColumn,
+    .seoSection {
+      display: none !important;
+    }
   }
 }
