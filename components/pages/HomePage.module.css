@@ -169,8 +169,7 @@
     .dashboardSection {
       padding: 0 !important;
       margin: 0 !important;
-      height: 100svh !important;
-      min-height: 100svh !important;
+      height: 50svh !important;
     }
 
     /* 2. Đẩy toàn bộ xuống sát đáy */
@@ -190,12 +189,6 @@
       padding: 5px !important; /* Chỉ giữ padding bên trong viền cho đẹp */
       margin: 0 !important;
       width: 100% !important;
-    }
-
-    /* Giấu cột thừa */
-    .sideColumn,
-    .seoSection {
-      display: none !important;
     }
   }
 }
