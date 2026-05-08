@@ -150,7 +150,6 @@
 
   .dashboardGrid {
     display: flex !important;
-    flex-direction: column !important;
     justify-content: flex-end !important; /* Dồn sát đáy */
     height: 100svh !important;
     margin: 0 !important;
