@@ -158,8 +158,8 @@
 
   .gameArea {
     min-height: unset !important;
-    height: 85vh !important; /* Lót đường cho máy cũ */
-    height: 85svh !important; /* Chừa 15% phía trên hứng thanh URL */
+    height: 100vh !important; /* Lót đường cho máy cũ */
+    height: 100svh !important; /* Chừa 15% phía trên hứng thanh URL */
     padding: 5px !important;
     margin: 0 !important;
     width: 100% !important;
